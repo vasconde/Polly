@@ -1,0 +1,6 @@
+data/
+push_git.sh
+*.o
+*.txt
+*~
+*#
