@@ -1,1 +1,14 @@
-POLLY
+POLLY - Programa de ajustamento 3D de poligonais
+
+lib Milestones:
+
+Matrix
+ENZ
+SIUnits
+Ajust
+DProblem
+IOXML
+
+Modelo Matemático:
+
+...
