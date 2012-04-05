@@ -1,4 +1,23 @@
+[PT]
+
 POLLY - Programa de ajustamento 3D de poligonais
+
+lib Milestones:
+
+  	  Matrix - Operações lineares em matrizes (A*B, A+-B, kA, Inversa, Transposta)
+ BaseCoordinates - Lista de objectos ENZ
+	 SIUnits - Transformações entre unidades do SI
+AjustLeastSquare - Computação de procedimentos de computação
+	DProblem - Resolução do problema directo da geodesia
+	 IOPolly - Creação de ficheiros de entrada e saída
+
+Modelos Matemáticos:
+
+...
+
+[EN]
+
+POLLY - 3D traverse ajustment software
 
 lib Milestones:
 
@@ -9,6 +28,7 @@ AjustLeastSquare - Computation procedures
 	DProblem - Coordenates propagation of the traverse stations
 	 IOPolly - Creation of Input and Output files
 
-Modelos Matemáticos:
+Mathmatical Forms:
 
 ...
+
