@@ -2,13 +2,13 @@ POLLY - Programa de ajustamento 3D de poligonais
 
 lib Milestones:
 
-Matrix
-ENZ
-SIUnits
-Ajust
-DProblem
-IOXML
+  	  Matrix - Linear Matrix Operations (A*B, A+-B, kA, Inverse, Transpose)
+ BaseCoordinates - List of ENZ Objects
+	 SIUnits - Transformation between SI Units
+AjustLeastSquare - Computation procedures 
+	DProblem - Coordenates propagation of the traverse stations
+	 IOPolly - Creation of Input and Output files
 
-Modelo Matemático:
+Modelos Matemáticos:
 
 ...
