@@ -36,6 +36,12 @@ namespace BaseCoordinates{
 	infoInt = new std::list<int>();
       }
 
+      ~ENZ(){
+	delete infoDouble;
+	delete infoInt;
+	delete infoString;
+      }
+
       int ID() {return id;}
       void ID(int id) {this->id = id;}
 
@@ -66,6 +72,16 @@ namespace BaseCoordinates{
       void Dev_VN(int dev_VN) {sig_Vp = dev_VN;}
       int Dev_VP(){return sig_Vh;}
       void Dev_VP(int dev_VP) {sig_Vh = dev_VP;}
+
+      std::list<std::string>* getInfoString(){return infoString;}
+      void setInfoString(std::list<std::string>* infoString) {this->infoString = infoString;}
+
+      std::list<double>* getInfoDouble(){return infoDouble;}
+      void setInfoDouble(std::list<double>* infoDouble) {this->infoDouble = infoDouble;}
+      
+      std::list<int>* getInfoInt(){return infoInt;}
+      void setInfoInt(std::list<int>* infoInt) {this->infoInt = infoInt;}
+
 
     private:
       double m, p, h;
