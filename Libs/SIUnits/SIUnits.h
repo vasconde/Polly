@@ -26,6 +26,12 @@ public:
   // conversao de graus decimal para DMS
   void degree2DMS (double degree, int *D, int *M, double *S);
 
+  // conversao de grados para graus decimal
+  double gon2degree (double gon);
+
+  // conversao de graus decimais para grados
+  double degree2gon (double degree);
+
 private:
 
 

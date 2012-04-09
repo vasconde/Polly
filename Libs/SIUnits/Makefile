@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -std=c++98
+CFLAGS = -g -Wall -std=c++98
 
 OBJ = main.o SIUnits.o
 

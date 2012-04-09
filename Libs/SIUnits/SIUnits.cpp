@@ -30,7 +30,31 @@ double SIUnits::DMS2degree (double D, double M, double S)
 // conversao de degree para DMS
 void SIUnits::degree2DMS (double degree, int *D, int *M, double *S)
 {
-  //*D = (int)degree;
-  //*M = (int)(degree % 1) * 60;
-  //*S = (((degree % 1) * 60) % 1) * 60;
+  double aux; // para calculos intermedios
+
+  // graus
+  *D = (int)degree;
+  
+  // minutos
+  if (degree >= 0)
+    aux = (degree - *D) * 60;
+  else
+    aux = (-degree + *D) * 60;
+  *M = (int)aux;
+
+  // segundos
+  aux = (aux - *M) * 60;
+  *S = aux; 
+}
+
+// conversao de grados para graus decimal
+double SIUnits::gon2degree (double gon)
+{
+  return gon * 180.0 / 200.0;
+}
+
+// conversao de graus decimais para grados
+double SIUnits::degree2gon (double degree)
+{
+  return degree * 200.0 / 180.0;
 }
