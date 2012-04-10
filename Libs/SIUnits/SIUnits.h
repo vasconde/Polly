@@ -14,6 +14,7 @@ class SIUnits
 {
 public:
 
+  //DEGREE
   // conversao de radianos para graus decimais
   double rad2degree (double rad);
 
@@ -31,6 +32,26 @@ public:
 
   // conversao de graus decimais para grados
   double degree2gon (double degree);
+
+  // RAD
+  // conversao de DMS para rad
+  double DMS2rad (double D, double M, double S);
+  
+  // conversao de rad para DMS
+  void rad2DMS (double rad, int *D, int *M, double *S);
+
+  // conversao de grados para rad
+  double gon2rad (double gon);
+
+  // conversao de rad para grados
+  double rad2gon (double rad);
+
+  // GON
+  // conversao de DMS para gon
+  double DMS2gon (double D, double M, double S);
+  
+  // conversao de gon para DMS
+  void gon2DMS (double gon, int *D, int *M, double *S);
 
 private:
 

@@ -58,3 +58,47 @@ double SIUnits::degree2gon (double degree)
 {
   return degree * 200.0 / 180.0;
 }
+
+// conversao de DMS para rad
+double SIUnits::DMS2rad (double D, double M, double S)
+{
+  double degree = DMS2degree (D, M, S);
+
+  return degree2rad (degree);
+}
+  
+// conversao de rad para DMS
+void SIUnits::rad2DMS (double rad, int *D, int *M, double *S)
+{
+  double degree = rad2degree (rad);
+
+  degree2DMS (degree, D, M, S);
+}
+
+// conversao de grados para rad
+double SIUnits::gon2rad (double gon)
+{
+  return gon * M_PI / 200.0;
+}
+
+// conversao de rad para grados
+double SIUnits::rad2gon (double rad)
+{
+  return rad * 200.0 / M_PI;
+}
+
+// conversao de DMS para gon
+double SIUnits::DMS2gon (double D, double M, double S)
+{
+  double degree = DMS2degree (D, M, S);
+
+  return degree2gon (degree);
+}
+  
+// conversao de gon para DMS
+void SIUnits::gon2DMS (double gon, int *D, int *M, double *S)
+{
+  double degree = gon2degree (gon);
+  
+  degree2DMS (degree, D, M, S);
+}
