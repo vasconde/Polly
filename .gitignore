@@ -3,6 +3,7 @@ push_git.sh
 test
 main
 *.o
+*.gch
 *.txt
 *~
 *#
