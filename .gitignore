@@ -1,5 +1,7 @@
 data/
 push_git.sh
+test
+main
 *.o
 *.txt
 *~
@@ -38,4 +40,5 @@ push_git.sh
 /Docs/Latex/*.toc
 /Docs/Latex/*.lot
 /Docs/Latex/*.log
+/Libs/SIUnits/test
 

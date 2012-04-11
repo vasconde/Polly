@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 #include "SIUnits.h"
 
@@ -14,7 +13,7 @@ int main ()
 
   int D, M;
   double S;
-  double degree = u->DMS2degree(-90,59,20);
+  double degree = u->DMS2degree(90,59,20);
 
   std::cout << degree << std::endl;
 

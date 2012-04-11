@@ -1,17 +1,17 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++98
 
-OBJ = main.o SIUnits.o
+OBJ = test.o SIUnits.o
 
 # # # # #
 
-all: main
+all: test
 
-main: main.o SIUnits.o
-	$(CC) $(CFLAGS) -o main $(OBJ)
+test: test.o SIUnits.o
+	$(CC) $(CFLAGS) -o test $(OBJ)
 
-main.o: SIUnits.o main.cpp
-	$(CC) $(CFLAGS) -c main.cpp
+test.o: SIUnits.o test.cpp
+	$(CC) $(CFLAGS) -c test.cpp
 
 SIUnits.o: SIUnits.h SIUnits.cpp
 	$(CC) $(CFLAGS) -c SIUnits.cpp
@@ -23,4 +23,4 @@ clean:
 	rm -rf *~
 
 mrproper: clean
-	rm -rf main
+	rm -rf test
