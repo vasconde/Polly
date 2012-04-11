@@ -6,7 +6,7 @@
 #include "SIUnits.h"
 
 // conversao de degree para DMS
-void SIUnits::degree2DMS (double degree, int *D, int *M, double *S)
+void SIUnits::degree2DMS (const double degree, int *D, int *M, double *S)
 {
   double aux; // para calculos intermedios
 
