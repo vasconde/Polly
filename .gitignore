@@ -42,4 +42,5 @@ main
 /Docs/Latex/*.lot
 /Docs/Latex/*.log
 /Libs/SIUnits/test
+/Libs/IOPolly/test
 
