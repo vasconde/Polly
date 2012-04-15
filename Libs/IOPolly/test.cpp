@@ -42,8 +42,15 @@ int main ()
 
   s2.readings.push_back(v3);
 
-  
+  //before added elements
+  printObs(t);
 
+  std::cout << "-----" << std::endl;
+
+  t->removeStation ("V2");
+  t->removeReading ("V1", "R2");
+
+  //after removed element
   printObs(t);
 
   delete t;
