@@ -2,6 +2,9 @@
 
 #include "IOPolly.h"
 
+// Rotina para imprimir a lista de observacoes
+// Apenas sao apresentados os nomes das estacoes
+// e das leituras (estas ultimas aparecem identadas)
 void printObs (IOPolly *t)
 {
 
@@ -23,35 +26,24 @@ int main ()
 {
   IOPolly *t = new IOPolly();
 
-  struct station s1, s2;
-
-  struct reading v1 = {"R1", 21,21,21, 22};
-  struct reading v2 = {"R2", 23,23,23, 24};
-  struct reading v3 = {"R3", 25,25,25, 26};
-
+  //stations
   t->addStation("V1", 0.98);
   t->addStation("V2", 0.87);
   t->addStation("V3", 0.88);
 
+  //readings per stations
   t->addReading("V1", "R1", 21,21,21, 22);
   t->addReading("V1", "R2", 23,23,23, 24);
   t->addReading("V3", "R3", 25,25,25, 26);
 
-  s1.readings.push_back(v1);
-  s1.readings.push_back(v2);
-
-  s2.readings.push_back(v3);
-
-  //before added elements
-  printObs(t);
+  printObs(t); //before added elements
 
   std::cout << "-----" << std::endl;
 
   t->removeStation ("V2");
   t->removeReading ("V1", "R2");
 
-  //after removed element
-  printObs(t);
+  printObs(t); //after removed element
 
   delete t;
 
