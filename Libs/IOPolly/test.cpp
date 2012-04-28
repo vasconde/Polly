@@ -22,7 +22,7 @@ void printObs (IOPolly *t)
     }
 }
 
-int main ()
+int main_off ()
 {
   IOPolly *t = new IOPolly();
 
@@ -36,7 +36,7 @@ int main ()
   t->addReading("V1", "R2", 23,23,23, 24);
   t->addReading("V3", "R3", 25,25,25, 26);
 
-  printObs(t); //before added elements
+  printObs(t); //before removed elements
 
   std::cout << "-----" << std::endl;
 
@@ -44,6 +44,19 @@ int main ()
   t->removeReading ("V1", "R2");
 
   printObs(t); //after removed element
+
+  delete t;
+
+  return 0;
+}
+
+int main ()
+{
+  IOPolly *t = new IOPolly();
+
+  t->obsFromTextFile ("dataFileTest.txt");
+
+  printObs(t);
 
   delete t;
 
