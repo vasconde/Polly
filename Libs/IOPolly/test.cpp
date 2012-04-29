@@ -22,6 +22,21 @@ void printObs (IOPolly *t)
     }
 }
 
+//carregar os dados a partir de um ficheiro de texto
+int main ()
+{
+  IOPolly *t = new IOPolly();
+
+  t->obsFromTextFile ("dataFileTest.txt", 2); // 2 - degree
+
+  printObs(t);
+
+  delete t;
+
+  return 0;
+}
+
+// carregar as estruturas uma a uma
 int main_off ()
 {
   IOPolly *t = new IOPolly();
@@ -50,15 +65,4 @@ int main_off ()
   return 0;
 }
 
-int main ()
-{
-  IOPolly *t = new IOPolly();
 
-  t->obsFromTextFile ("dataFileTest.txt");
-
-  printObs(t);
-
-  delete t;
-
-  return 0;
-}

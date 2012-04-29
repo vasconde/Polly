@@ -21,6 +21,8 @@
 
 #include <cstdlib>
 
+#include "../SIUnits/SIUnits.h"
+
 // ver union
 struct reading
 {
@@ -66,7 +68,8 @@ public:
   void removeReading (std::string from, std::string to);
 
   //carrega as observacoes a partir de um ficheiro de texto
-  void obsFromTextFile (std::string filePath);
+  //angle_unit_type - 1 - rad; 2 - degree; 3 - gon
+  void obsFromTextFile (std::string filePath, int angle_unit_type);
 
 private:
    
