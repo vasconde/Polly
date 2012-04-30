@@ -1,20 +1,20 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++98
 
-OBJ = test.o ENZ.o
+OBJ = test.o DProblem.o
 
 # # # # #
 
 all: test
 
-test: test.o ENZ.o
+test: test.o DProblem.o
 	$(CC) $(CFLAGS) -o test $(OBJ)
 
-test.o: ENZ.o test.cpp
+test.o: DProblem.o test.cpp
 	$(CC) $(CFLAGS) -c test.cpp
 
-ENZ.o: ENZ.h ENZ.cpp
-	$(CC) $(CFLAGS) -c ENZ.cpp
+DProblem.o: DProblem.h DProblem.cpp
+	$(CC) $(CFLAGS) -c DProblem.cpp
 
 # # # # #
 

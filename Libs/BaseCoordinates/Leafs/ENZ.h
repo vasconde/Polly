@@ -12,7 +12,7 @@ namespace BaseCoordinates{
     class ENZ{
     public:
 
-      ENZ(double east, double north, double z, int id);
+      ENZ(double east, double north, double z, std::string id);
       
       ENZ(double east, double north, double z);
 
@@ -20,9 +20,9 @@ namespace BaseCoordinates{
 
       ~ENZ();
 
-      int ID();
+      std::string ID();
       
-      void ID(int id);
+      void ID(std::string id);
 
       int E();
 
@@ -89,11 +89,11 @@ namespace BaseCoordinates{
 
       double m, p, h;
 
-      double sig_m, sig_p, sig_h;
+      double sig2_m, sig2_p, sig2_h;
 
       double vel_m, vel_p, vel_h;
 
-      double sig_Vm, sig_Vp, sig_Vh;
+      double sig2_Vm, sig2_Vp, sig2_Vh;
 
       std::list<std::string>* infoString;
 
@@ -101,7 +101,7 @@ namespace BaseCoordinates{
 
       std::list<int>* infoInt;      
 
-      int id;
+      std::string id;
     };
   }
 }

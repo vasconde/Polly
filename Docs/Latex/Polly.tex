@@ -2,7 +2,7 @@
 %twosides
 
 \title{Geodetic and Surveying Solutions}
-\author{Leonor Vila Lobos \and Pedro Mendonça \and Vasco Conde}
+\author{Pedro Mendonça \and Vasco Conde}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -26,6 +26,9 @@
 
 \usepackage[leqno]{amsmath}            % simbolos matematicos
 \usepackage{verbatim}                  % verbatim
+
+%mathpackage
+\usepackage{ amssymb }
 
 %tabelas
 \usepackage{array}
@@ -52,6 +55,68 @@
 \newpage
 
 \tableofcontents
+
+\newpage
+
+\section{Observáveis}
+
+Numa poligonal existirão estações fixas, vértices de coordenadas conhecidas, e estaçoes não fixas, vértices de coordenadas que se pretende determinar. Através do estacionamento nos diversos vértices da poligonal retirar-se-ão observações visando a estação atrás e à frente tanto na directa como na inversa, obtendo-se assim 4 visadas em cada estacionamento. As observáveis são as seguintes:
+
+	\underline{Estação}:
+	\begin{itemize}
+	\item ID
+	\item Altura Estação
+	\end{itemize}
+
+	\underline{Vizadas}:
+	\begin{itemize}
+	\item ID
+	\item Medição Angular
+	\item Distância Inclinada
+	\item Altura Alvo
+	\end{itemize}
+
+	\begin{figure}[!htbp] 
+    	\centering
+    	\includegraphics[scale=0.5]{img/Observaveis.png}
+    	\caption{Tabela de observáveis de input.}
+    	\label{fig:tabelaObservaveis}
+	\end{figure}	
+
+	\newpage
+
+\section{Modelos Matematicos}
+	
+	Coordenadas:
+	\begin{equation*}
+	E_j = \sin (R_{ij}) * DH_{ij} + E_i + \epsilon
+	\end{equation*}	
+	
+	\begin{equation*}
+	N_j = \cos (R_{ij}) * DH_{ij} + N_i + \epsilon
+	\end{equation*}	
+
+	\begin{equation*}
+	Z_j = \cos (\measuredangle z_{ij}) * DI_{ij} + Z_i - (h_j - h_i) + \epsilon
+	\end{equation*}	
+	
+	Rumos:
+	\begin{equation*}
+	R_{ij} = R_{0} + \measuredangle _j + \epsilon (R_0)
+	\end{equation*}		
+
+	\begin{equation*}
+	R_{0} = R_{-1} + 180 \degree - \measuredangle _{i-1} + \epsilon (R_0)
+	\end{equation*}		
+	
+	
+	\newpage
+	
+\section{Procedimento}
+
+\newpage
+
+\section{Exemplo}
 
 \newpage
 

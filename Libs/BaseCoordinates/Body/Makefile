@@ -1,11 +1,21 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++98
-ENZFLAG = -I../Leafs
+GeoCoordFLAG = -I../Leafs
+
+OBJ = test.o GeoCoord.o
+
 # # # # #
 
+all: test
 
-GeoCoord.o: GeoCoord.hpp
-	$(CC) $(CFLAGS) -c GeoCoord.hpp $(ENZFLAG)
+test: test.o GeoCoord.o
+	$(CC) $(CFLAGS) -o test $(OBJ)
+
+test.o: GeoCoord.o test.cpp
+	$(CC) $(CFLAGS) -c test.cpp $(GeoCoordFLAG)
+
+GeoCoord.o: GeoCoord.h GeoCoord.cpp
+	$(CC) $(CFLAGS) -c GeoCoord.cpp $(GeoCoordFLAG)	-c ENZ.cpp
 
 # # # # #
 
@@ -14,4 +24,4 @@ clean:
 	rm -rf *~
 
 mrproper: clean
-	rm -rf GeoCoord
+	rm -rf test
