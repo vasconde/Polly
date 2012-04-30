@@ -1,13 +1,13 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++98
 
-OBJ = test.o IOPolly.o
+OBJ = test.o IOPolly.o SIUnits.o
 
 # # # # #
 
 all: test
 
-test: test.o IOPolly.o
+test: $(OBJ)
 	$(CC) $(CFLAGS) -o test $(OBJ)
 
 test.o: IOPolly.o test.cpp
@@ -15,6 +15,9 @@ test.o: IOPolly.o test.cpp
 
 IOPolly.o: IOPolly.h IOPolly.cpp
 	$(CC) $(CFLAGS) -c IOPolly.cpp
+
+SIUnits.o: ../SIUnits/SIUnits.h ../SIUnits/SIUnits.cpp
+	$(CC) $(CFLAGS) -c ../SIUnits/SIUnits.cpp -o SIUnits.o
 
 # # # # #
 

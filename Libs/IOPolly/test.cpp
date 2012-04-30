@@ -22,7 +22,22 @@ void printObs (IOPolly *t)
     }
 }
 
+//carregar os dados a partir de um ficheiro de texto
 int main ()
+{
+  IOPolly *t = new IOPolly();
+
+  t->obsFromTextFile ("dataFileTest.txt", 2); // 2 - degree
+
+  printObs(t);
+
+  delete t;
+
+  return 0;
+}
+
+// carregar as estruturas uma a uma
+int main_off ()
 {
   IOPolly *t = new IOPolly();
 
@@ -36,7 +51,7 @@ int main ()
   t->addReading("V1", "R2", 23,23,23, 24);
   t->addReading("V3", "R3", 25,25,25, 26);
 
-  printObs(t); //before added elements
+  printObs(t); //before removed elements
 
   std::cout << "-----" << std::endl;
 
@@ -49,3 +64,5 @@ int main ()
 
   return 0;
 }
+
+

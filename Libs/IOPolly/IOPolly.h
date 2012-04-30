@@ -14,28 +14,36 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+#include <vector>
 
 #include <cstdlib>
+
+#include "../SIUnits/SIUnits.h"
 
 // ver union
 struct reading
 {
-  std::string to;   //visada
+  std::string to;   //nome da visada
+  
+  double horizontal_dir;  //observacao azimutal
+  double vertical_dir;    //observacao zenital
+  double distance;        //distancia
 
-  double az;   //observacao azimutal
-  double z;    //observacao zenital
-  double dist; //distancia
-
-  double altura;
+  double height; // tripod height
 };
 
 struct station
 {
-  std::string from;
-  
-  double altura;
+
+  std::string from; //nome da estacao
+ 
+  double height;
 
   std::list <struct reading> readings;
+
 };
 
 
@@ -47,12 +55,12 @@ public:
   std::list<station> obs;
 
   // adiciona uma estacao ah lista obs
-  void addStation (std::string from, double altura);
+  void addStation (std::string from, double height);
 
   //adiciona uma leitura a uma estacao contida na lista obs
-  void addReading (std::string from, std::string to, double az,
-		   double z, double dist, double altura);
- 
+  void addReading (std::string from, std::string to, double horizontal_dir, 
+		   double vertical_dir, double distance, double height);
+
   //remove um estacao da lista obs
   void removeStation (std::string from);
 
@@ -60,7 +68,8 @@ public:
   void removeReading (std::string from, std::string to);
 
   //carrega as observacoes a partir de um ficheiro de texto
-  void obsFromTextFile (std::string filePath);
+  //angle_unit_type - 1 - rad; 2 - degree; 3 - gon
+  void obsFromTextFile (std::string filePath, int angle_unit_type);
 
 private:
    
