@@ -2,9 +2,33 @@
  * IOPolly - Implentacao
  * Classe especializada para entrada e saida
  * de dados
+ *
+ * PROBLEMA: eh necessario descobrir como fazer o delete dos geocoords
+ * sem entrar em falha de segmentacao
  */
 
 #include "IOPolly.h"
+
+//construtor IOPolly
+IOPolly::IOPolly()
+{
+  CStations = new BaseCoordinates::Body::GeoCoord();
+
+  TStations = new BaseCoordinates::Body::GeoCoord();
+}
+
+//destrutor IOPolly
+IOPolly::~IOPolly()
+{
+  //std::list<BaseCoordinates::Leaf::ENZ> *listENZ = CStations->getListENZ();
+
+  //std::list<BaseCoordinates::Leaf::ENZ>::iterator i;
+  //for(i = listENZ->begin(); i != listENZ->end(); ++i)
+  //  delete i;
+
+  //delete CStations;
+  //delete TStations;
+}
 
 // adiciona uma estacao ah lista obs
 
@@ -154,4 +178,82 @@ void IOPolly::obsFromTextFile (std::string filePath, int angle_unit_type)
   delete ang_conv;
 
   data_file.close();
+}
+
+void IOPolly::StationsFromTextFile (std::string filePathCStations, 
+				    std::string filePathTStations, 
+				    int aprox)
+{
+  // The input Control Stations file 
+  std::ifstream CStations_file (filePathCStations.c_str());
+
+  // testa a abertura do ficheiro
+  if (!CStations_file.is_open()) 
+    {
+      std::cerr << "Error: Could not open " << filePathCStations << "\n";
+      exit (8); //faz parte da cstdlib
+    }
+
+  // The input Traverse Stations file
+  std::ifstream TStations_file (filePathTStations.c_str());
+  
+  // testa a abertura do ficheiro
+  if (!TStations_file.is_open()) 
+    {
+      std::cerr << "Error: Could not open " << filePathTStations << "\n";
+      exit (8); //faz parte da cstdlib
+    }
+
+  std::string name;
+  double E, N, Z;
+  
+  while(!CStations_file.eof())
+    {    
+      // esta condicao eh para evitar a dupla leitura no final
+      if(CStations_file >> name >> E >> N >> Z)
+	{
+	  std::cout << name << " " << E << " " << N << " " << Z << "\n";
+	  
+	  BaseCoordinates::Leaf::ENZ *point = 
+	    new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
+
+	  CStations->addEnzPoint(*point);
+	}
+    }
+
+  while(!TStations_file.eof())
+    {    
+      if(aprox)
+	{
+	  // esta condicao eh para evitar a dupla leitura no final
+	  if(TStations_file >> name >> E >> N >> Z)
+	    {
+	      std::cout << name << " " << E << " " << N << " " << Z << "\n";
+	  
+	      BaseCoordinates::Leaf::ENZ *point = 
+		new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
+
+	      TStations->addEnzPoint(*point);
+	    }
+	}
+      else
+	{
+	  // esta condicao eh para evitar a dupla leitura no final
+	  if(TStations_file >> name)
+	    {
+	      std::cout << name << "\n";
+	      
+	      BaseCoordinates::Leaf::ENZ *point = 
+		new BaseCoordinates::Leaf::ENZ(0.0, 0.0, 0.0, name);
+
+	      TStations->addEnzPoint(*point);
+	    }
+	}
+
+    }
+
+
+  CStations_file.close();
+  
+  TStations_file.close();
 }

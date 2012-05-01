@@ -22,6 +22,8 @@
 #include <cstdlib>
 
 #include "../SIUnits/SIUnits.h"
+#include "../BaseCoordinates/Body/GeoCoord.h"
+#include "../BaseCoordinates/Leafs/ENZ.h"
 
 // ver union
 struct reading
@@ -50,9 +52,22 @@ struct station
 class IOPolly
 {
 public:
+
   // lista com os estacionamentos que por sua vez
   // teem um lista com as leituras
   std::list<station> obs;
+
+  //lista de estacoes de coordenads conhecidas - Control Stations
+  BaseCoordinates::Body::GeoCoord *CStations;
+
+  //lista de estacoes de coordenadas a determinar - Traverse Stations
+  BaseCoordinates::Body::GeoCoord *TStations;
+
+  //construtor IOPolly
+  IOPolly();
+
+  //destrutor IOPolly
+  ~IOPolly();
 
   // adiciona uma estacao ah lista obs
   void addStation (std::string from, double height);
@@ -66,6 +81,13 @@ public:
 
   //remove uma leitura da lista de uma estacao que esta lista obs
   void removeReading (std::string from, std::string to);
+
+  //carrega as coordenadas das estacoes a partir de um ficheiro de texto
+  //aprox = 0 se as Traverse Stations nao tiverem coordenadas aproximadas
+  //aprox = 1 caso contrario
+  void StationsFromTextFile (std::string filePathCStations, 
+			     std::string filePathTStations, 
+			     int aprox);
 
   //carrega as observacoes a partir de um ficheiro de texto
   //angle_unit_type - 1 - rad; 2 - degree; 3 - gon

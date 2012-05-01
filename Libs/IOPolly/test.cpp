@@ -29,6 +29,10 @@ int main ()
 
   t->obsFromTextFile ("dataFileTest.txt", 2); // 2 - degree
 
+  t->StationsFromTextFile ("dataControl.txt", 
+			   "dataTraverse.txt", 
+			   1);
+
   printObs(t);
 
   delete t;
