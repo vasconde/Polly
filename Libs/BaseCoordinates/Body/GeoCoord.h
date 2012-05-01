@@ -2,10 +2,12 @@
 #define _GeoCoord_H_
 
 // C++ Standard Library //
-#include<ENZ.h>
 #include<string>
 #include<list>
 #include<iostream>
+
+// Polly Library
+#include "../Leafs/ENZ.h"
 
 namespace BaseCoordinates{
 
