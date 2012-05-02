@@ -26,8 +26,10 @@
 #include "../BaseCoordinates/Leafs/ENZ.h"
 
 // ver union
-struct reading
+class reading
 {
+ public:
+
   std::string to;   //nome da visada
   
   double horizontal_dir;  //observacao azimutal
@@ -35,16 +37,31 @@ struct reading
   double distance;        //distancia
 
   double height; // tripod height
+
+
+  //construtores
+
+  reading(std::string to, double horizontal_dir, 
+	  double vertical_dir, double distance, double height);
+  reading();
+
+ private:
+
 };
 
-struct station
+class station
 {
+ public:
 
   std::string from; //nome da estacao
  
   double height;
 
   std::list <struct reading> readings;
+
+  station(); // construtor
+
+ private:
 
 };
 

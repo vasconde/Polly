@@ -9,6 +9,26 @@
 
 #include "IOPolly.h"
 
+reading::reading(std::string to, double horizontal_dir, 
+		 double vertical_dir, double distance, double height)
+{
+  this->to = to;
+  this->horizontal_dir = horizontal_dir; 
+  this->vertical_dir = vertical_dir; 
+  this->distance = distance; 
+  this->height = height;
+}
+  
+reading::reading()
+{
+
+}
+
+station::station()
+{
+
+}
+
 //construtor IOPolly
 IOPolly::IOPolly()
 {
@@ -25,7 +45,7 @@ IOPolly::~IOPolly()
 
 void IOPolly::addStation (std::string from, double height)
 {
-  struct station s;
+  station s;
 
   s.from = from;
   s.height = height;
@@ -38,9 +58,9 @@ void IOPolly::addStation (std::string from, double height)
 void IOPolly::addReading (std::string from, std::string to, double horizontal_dir,
 			  double vertical_dir, double distance, double height)
 {
-  struct reading r = {to, horizontal_dir, vertical_dir, distance, height};
+  reading r(to, horizontal_dir, vertical_dir, distance, height);
 
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
   for(i = obs.begin(); i != obs.end(); i++)
     {
       if(i->from == from)
@@ -55,7 +75,7 @@ void IOPolly::addReading (std::string from, std::string to, double horizontal_di
 //remove um estacao da lista obs
 void IOPolly::removeStation (std::string from)
 {
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
   
   for(i = obs.begin(); i != obs.end(); i++)
     {
@@ -72,13 +92,13 @@ void IOPolly::removeStation (std::string from)
 //ISSUE: pode haver mais do que uma observacao com o mesmo from e to
 void IOPolly::removeReading (std::string from, std::string to)
 {
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
 
   for(i = obs.begin(); i != obs.end(); i++)
     {
       if(i->from == from)
 	{
-	  std::list<struct reading>::iterator j;
+	  std::list<reading>::iterator j;
 	  
 	  for(j = i->readings.begin(); j != i->readings.end(); j++)
 	    {
