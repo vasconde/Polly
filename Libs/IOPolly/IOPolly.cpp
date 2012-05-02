@@ -12,22 +12,13 @@
 //construtor IOPolly
 IOPolly::IOPolly()
 {
-  CStations = new BaseCoordinates::Body::GeoCoord();
-
-  TStations = new BaseCoordinates::Body::GeoCoord();
+  TCStations = new BaseCoordinates::Body::GeoCoord();
 }
 
 //destrutor IOPolly
 IOPolly::~IOPolly()
 {
-  //std::list<BaseCoordinates::Leaf::ENZ> *listENZ = CStations->getListENZ();
-
-  //std::list<BaseCoordinates::Leaf::ENZ>::iterator i;
-  //for(i = listENZ->begin(); i != listENZ->end(); ++i)
-  //  delete i;
-
-  delete CStations;
-  delete TStations;
+  delete TCStations;
 }
 
 // adiciona uma estacao ah lista obs
@@ -212,12 +203,13 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
       // esta condicao eh para evitar a dupla leitura no final
       if(CStations_file >> name >> E >> N >> Z)
 	{
-	  std::cout << name << " " << E << " " << N << " " << Z << "\n";
 	  
 	  BaseCoordinates::Leaf::ENZ *point = 
 	    new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
+	  
+	  point->getInfoInt()->push_back(1); //caso de ser uma control station
 
-	  CStations->addEnzPoint(point);
+	  TCStations->addEnzPoint(point);
 	}
     }
 
@@ -228,25 +220,27 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
 	  // esta condicao eh para evitar a dupla leitura no final
 	  if(TStations_file >> name >> E >> N >> Z)
 	    {
-	      std::cout << name << " " << E << " " << N << " " << Z << "\n";
+
 	  
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
 
-	      TStations->addEnzPoint(point);
+	      point->getInfoInt()->push_back(0); //caso de ser uma traverse station
+
+	      TCStations->addEnzPoint(point);
 	    }
 	}
       else
 	{
 	  // esta condicao eh para evitar a dupla leitura no final
 	  if(TStations_file >> name)
-	    {
-	      std::cout << name << "\n";
-	      
+	    {	      
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(0.0, 0.0, 0.0, name);
 
-	      TStations->addEnzPoint(point);
+	      point->getInfoInt()->push_back(0); //caso de ser uma traverse station
+
+	      TCStations->addEnzPoint(point);
 	    }
 	}
 

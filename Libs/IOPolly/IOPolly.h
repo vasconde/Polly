@@ -58,10 +58,8 @@ public:
   std::list<station> obs;
 
   //lista de estacoes de coordenads conhecidas - Control Stations
-  BaseCoordinates::Body::GeoCoord *CStations;
-
-  //lista de estacoes de coordenadas a determinar - Traverse Stations
-  BaseCoordinates::Body::GeoCoord *TStations;
+  //getInfoInt[0] -> 0 se Traverse Station; 1 se Control Station
+  BaseCoordinates::Body::GeoCoord *TCStations;
 
   //construtor IOPolly
   IOPolly();
