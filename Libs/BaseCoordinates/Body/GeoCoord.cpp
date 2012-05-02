@@ -23,5 +23,16 @@ void BaseCoordinates::Body::GeoCoord::addEnzPoint(BaseCoordinates::Leaf::ENZ *en
   }
 }
 
+BaseCoordinates::Leaf::ENZ* BaseCoordinates::Body::GeoCoord::getEnzPoint(std::string id)
+{
+  for(it = listENZ->begin(); it != listENZ->end(); it++)
+    {
+      std::string idTmp = (*it)->ID();
+      if (id == idTmp)
+	return (*it);
+    }
+  return NULL;
+}
+
 std::list<BaseCoordinates::Leaf::ENZ* >* BaseCoordinates::Body::GeoCoord::getListENZ(){return listENZ;}
 void BaseCoordinates::Body::GeoCoord::setListENZ(std::list<BaseCoordinates::Leaf::ENZ* >* listENZ){this->listENZ = listENZ;}

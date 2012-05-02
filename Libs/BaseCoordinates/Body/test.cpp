@@ -11,6 +11,12 @@ int main ()
 
   geo->addEnzPoint(point);
 
+  BaseCoordinates::Leaf::ENZ *point2 = new BaseCoordinates::Leaf::ENZ(6, 6, 6, "2");
+
+  geo->addEnzPoint(point2);
+
+  std::cout << geo->getEnzPoint("2")->E() << std::endl;
+
   delete geo;
 
   return 0;
