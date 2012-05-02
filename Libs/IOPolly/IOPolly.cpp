@@ -9,32 +9,43 @@
 
 #include "IOPolly.h"
 
+reading::reading(std::string to, double horizontal_dir, 
+		 double vertical_dir, double distance, double height)
+{
+  this->to = to;
+  this->horizontal_dir = horizontal_dir; 
+  this->vertical_dir = vertical_dir; 
+  this->distance = distance; 
+  this->height = height;
+}
+  
+reading::reading()
+{
+
+}
+
+station::station()
+{
+
+}
+
 //construtor IOPolly
 IOPolly::IOPolly()
 {
-  CStations = new BaseCoordinates::Body::GeoCoord();
-
-  TStations = new BaseCoordinates::Body::GeoCoord();
+  TCStations = new BaseCoordinates::Body::GeoCoord();
 }
 
 //destrutor IOPolly
 IOPolly::~IOPolly()
 {
-  //std::list<BaseCoordinates::Leaf::ENZ> *listENZ = CStations->getListENZ();
-
-  //std::list<BaseCoordinates::Leaf::ENZ>::iterator i;
-  //for(i = listENZ->begin(); i != listENZ->end(); ++i)
-  //  delete i;
-
-  delete CStations;
-  delete TStations;
+  delete TCStations;
 }
 
 // adiciona uma estacao ah lista obs
 
 void IOPolly::addStation (std::string from, double height)
 {
-  struct station s;
+  station s;
 
   s.from = from;
   s.height = height;
@@ -47,9 +58,9 @@ void IOPolly::addStation (std::string from, double height)
 void IOPolly::addReading (std::string from, std::string to, double horizontal_dir,
 			  double vertical_dir, double distance, double height)
 {
-  struct reading r = {to, horizontal_dir, vertical_dir, distance, height};
+  reading r(to, horizontal_dir, vertical_dir, distance, height);
 
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
   for(i = obs.begin(); i != obs.end(); i++)
     {
       if(i->from == from)
@@ -64,7 +75,7 @@ void IOPolly::addReading (std::string from, std::string to, double horizontal_di
 //remove um estacao da lista obs
 void IOPolly::removeStation (std::string from)
 {
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
   
   for(i = obs.begin(); i != obs.end(); i++)
     {
@@ -81,13 +92,13 @@ void IOPolly::removeStation (std::string from)
 //ISSUE: pode haver mais do que uma observacao com o mesmo from e to
 void IOPolly::removeReading (std::string from, std::string to)
 {
-  std::list<struct station>::iterator i;
+  std::list<station>::iterator i;
 
   for(i = obs.begin(); i != obs.end(); i++)
     {
       if(i->from == from)
 	{
-	  std::list<struct reading>::iterator j;
+	  std::list<reading>::iterator j;
 	  
 	  for(j = i->readings.begin(); j != i->readings.end(); j++)
 	    {
@@ -212,12 +223,13 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
       // esta condicao eh para evitar a dupla leitura no final
       if(CStations_file >> name >> E >> N >> Z)
 	{
-	  std::cout << name << " " << E << " " << N << " " << Z << "\n";
 	  
 	  BaseCoordinates::Leaf::ENZ *point = 
 	    new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
+	  
+	  point->getInfoInt()->push_back(1); //caso de ser uma control station
 
-	  CStations->addEnzPoint(point);
+	  TCStations->addEnzPoint(point);
 	}
     }
 
@@ -228,25 +240,27 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
 	  // esta condicao eh para evitar a dupla leitura no final
 	  if(TStations_file >> name >> E >> N >> Z)
 	    {
-	      std::cout << name << " " << E << " " << N << " " << Z << "\n";
+
 	  
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
 
-	      TStations->addEnzPoint(point);
+	      point->getInfoInt()->push_back(0); //caso de ser uma traverse station
+
+	      TCStations->addEnzPoint(point);
 	    }
 	}
       else
 	{
 	  // esta condicao eh para evitar a dupla leitura no final
 	  if(TStations_file >> name)
-	    {
-	      std::cout << name << "\n";
-	      
+	    {	      
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(0.0, 0.0, 0.0, name);
 
-	      TStations->addEnzPoint(point);
+	      point->getInfoInt()->push_back(0); //caso de ser uma traverse station
+
+	      TCStations->addEnzPoint(point);
 	    }
 	}
 
