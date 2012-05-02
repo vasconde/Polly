@@ -1,17 +1,17 @@
 #include "GeoCoord.h"
 
-BaseCoordinates::Body::GeoCoord::GeoCoord(std::list<BaseCoordinates::Leaf::ENZ> *listENZ){
+BaseCoordinates::Body::GeoCoord::GeoCoord(std::list<BaseCoordinates::Leaf::ENZ* > *listENZ){
   this->listENZ = listENZ;
 }
 BaseCoordinates::Body::GeoCoord::GeoCoord(){
-  listENZ = new std::list<BaseCoordinates::Leaf::ENZ>();
+  listENZ = new std::list<BaseCoordinates::Leaf::ENZ* >();
 }
 BaseCoordinates::Body::GeoCoord::~GeoCoord(){
   delete listENZ;
 }
 
 //adiciona um objecto ENZ ao Geocoord
-void BaseCoordinates::Body::GeoCoord::addEnzPoint(BaseCoordinates::Leaf::ENZ enzPt){
+void BaseCoordinates::Body::GeoCoord::addEnzPoint(BaseCoordinates::Leaf::ENZ *enzPt){
   try{
     listENZ->push_front(enzPt);
   }
@@ -23,5 +23,5 @@ void BaseCoordinates::Body::GeoCoord::addEnzPoint(BaseCoordinates::Leaf::ENZ enz
   }
 }
 
-std::list<BaseCoordinates::Leaf::ENZ>* BaseCoordinates::Body::GeoCoord::getListENZ(){return listENZ;}
-void BaseCoordinates::Body::GeoCoord::setListENZ(std::list<BaseCoordinates::Leaf::ENZ>* listENZ){this->listENZ = listENZ;}
+std::list<BaseCoordinates::Leaf::ENZ* >* BaseCoordinates::Body::GeoCoord::getListENZ(){return listENZ;}
+void BaseCoordinates::Body::GeoCoord::setListENZ(std::list<BaseCoordinates::Leaf::ENZ* >* listENZ){this->listENZ = listENZ;}

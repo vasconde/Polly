@@ -4,6 +4,7 @@
 // C++ Standard Library //
 #include <string>
 #include <list>
+#include <vector>
 
 namespace BaseCoordinates{
 
@@ -72,17 +73,17 @@ namespace BaseCoordinates{
 
       void Dev_VP(int dev_VP);
 
-      std::list<std::string>* getInfoString();
+      std::vector<std::string>* getInfoString();
 
-      void setInfoString(std::list<std::string>* infoString);
+      void setInfoString(std::vector<std::string>* infoString);
 
-      std::list<double>* getInfoDouble();
+      std::vector<double>* getInfoDouble();
 
-      void setInfoDouble(std::list<double>* infoDouble);
+      void setInfoDouble(std::vector<double>* infoDouble);
       
-      std::list<int>* getInfoInt();
+      std::vector<int>* getInfoInt();
 
-      void setInfoInt(std::list<int>* infoInt);
+      void setInfoInt(std::vector<int>* infoInt);
 
 
     private:
@@ -95,11 +96,11 @@ namespace BaseCoordinates{
 
       double sig2_Vm, sig2_Vp, sig2_Vh;
 
-      std::list<std::string>* infoString;
+      std::vector<std::string>* infoString;
 
-      std::list<double>* infoDouble;
+      std::vector<double>* infoDouble;
 
-      std::list<int>* infoInt;      
+      std::vector<int>* infoInt;      
 
       std::string id;
     };

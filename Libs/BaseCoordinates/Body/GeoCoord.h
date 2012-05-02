@@ -16,20 +16,24 @@ namespace BaseCoordinates{
     class GeoCoord{
 
     public:      
-      GeoCoord(std::list<BaseCoordinates::Leaf::ENZ> *listENZ);
+      GeoCoord(std::list<BaseCoordinates::Leaf::ENZ* > *listENZ);
 
       GeoCoord();
 
       ~GeoCoord();
 
-      void addEnzPoint(BaseCoordinates::Leaf::ENZ enzPt);
+      void addEnzPoint(BaseCoordinates::Leaf::ENZ *enzPt);
+      
+      void removeEnzPoint(std::string id);
 
-      std::list<BaseCoordinates::Leaf::ENZ>* getListENZ();
+      void removeEnzPoint(double e, double n, double z);
 
-      void setListENZ(std::list<BaseCoordinates::Leaf::ENZ>* listENZ);
+      std::list<BaseCoordinates::Leaf::ENZ* >* getListENZ();
+
+      void setListENZ(std::list<BaseCoordinates::Leaf::ENZ* >* listENZ);
 
     private:
-      std::list<BaseCoordinates::Leaf::ENZ>* listENZ;	
+      std::list<BaseCoordinates::Leaf::ENZ* >* listENZ;	
 
       std::list<BaseCoordinates::Leaf::ENZ>::iterator it;
     };

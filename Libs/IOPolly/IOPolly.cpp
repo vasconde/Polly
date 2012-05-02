@@ -26,8 +26,8 @@ IOPolly::~IOPolly()
   //for(i = listENZ->begin(); i != listENZ->end(); ++i)
   //  delete i;
 
-  //delete CStations;
-  //delete TStations;
+  delete CStations;
+  delete TStations;
 }
 
 // adiciona uma estacao ah lista obs
@@ -217,7 +217,7 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
 	  BaseCoordinates::Leaf::ENZ *point = 
 	    new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
 
-	  CStations->addEnzPoint(*point);
+	  CStations->addEnzPoint(point);
 	}
     }
 
@@ -233,7 +233,7 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(E, N, Z, name);
 
-	      TStations->addEnzPoint(*point);
+	      TStations->addEnzPoint(point);
 	    }
 	}
       else
@@ -246,7 +246,7 @@ void IOPolly::StationsFromTextFile (std::string filePathCStations,
 	      BaseCoordinates::Leaf::ENZ *point = 
 		new BaseCoordinates::Leaf::ENZ(0.0, 0.0, 0.0, name);
 
-	      TStations->addEnzPoint(*point);
+	      TStations->addEnzPoint(point);
 	    }
 	}
 

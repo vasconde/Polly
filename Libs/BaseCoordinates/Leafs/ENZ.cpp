@@ -7,9 +7,9 @@ BaseCoordinates::Leaf::ENZ::ENZ(double east, double north, double z, std::string
   p = north;
   h = z;
   this->id = id;
-  infoDouble = new std::list<double>();
-  infoString = new std::list<std::string>();
-  infoInt = new std::list<int>();
+  infoDouble = new std::vector<double>();
+  infoString = new std::vector<std::string>();
+  infoInt = new std::vector<int>();
 }
 
 BaseCoordinates::Leaf::ENZ::ENZ(double east, double north, double z){
@@ -18,16 +18,16 @@ BaseCoordinates::Leaf::ENZ::ENZ(double east, double north, double z){
   p = north;
   h = z;
   id = -1;
-  infoDouble = new std::list<double>();
-  infoString = new std::list<std::string>();
-  infoInt = new std::list<int>();
+  infoDouble = new std::vector<double>();
+  infoString = new std::vector<std::string>();
+  infoInt = new std::vector<int>();
 }
 
 BaseCoordinates::Leaf::ENZ::ENZ(){
   
-  infoDouble = new std::list<double>();
-  infoString = new std::list<std::string>();
-  infoInt = new std::list<int>();
+  infoDouble = new std::vector<double>();
+  infoString = new std::vector<std::string>();
+  infoInt = new std::vector<int>();
 }
 
 BaseCoordinates::Leaf::ENZ::~ENZ(){
@@ -90,13 +90,13 @@ void BaseCoordinates::Leaf::ENZ::Dev_VP(int dev_VP) {sig2_Vh = dev_VP;}
 
 
 //lista strings com informação genérica
-std::list<std::string>* BaseCoordinates::Leaf::ENZ::getInfoString(){return infoString;}
-void BaseCoordinates::Leaf::ENZ::setInfoString(std::list<std::string>* infoString) {this->infoString = infoString;}
+std::vector<std::string>* BaseCoordinates::Leaf::ENZ::getInfoString(){return infoString;}
+void BaseCoordinates::Leaf::ENZ::setInfoString(std::vector<std::string>* infoString) {this->infoString = infoString;}
 
 //lista de doubles com informação genérica
-std::list<double>* BaseCoordinates::Leaf::ENZ::getInfoDouble(){return infoDouble;}
-void BaseCoordinates::Leaf::ENZ::setInfoDouble(std::list<double>* infoDouble) {this->infoDouble = infoDouble;}
+std::vector<double>* BaseCoordinates::Leaf::ENZ::getInfoDouble(){return infoDouble;}
+void BaseCoordinates::Leaf::ENZ::setInfoDouble(std::vector<double>* infoDouble) {this->infoDouble = infoDouble;}
       
 //lista de inteiros com infromação genérica
-std::list<int>* BaseCoordinates::Leaf::ENZ::getInfoInt(){return infoInt;}
-void BaseCoordinates::Leaf::ENZ::setInfoInt(std::list<int>* infoInt) {this->infoInt = infoInt;}
+std::vector<int>* BaseCoordinates::Leaf::ENZ::getInfoInt(){return infoInt;}
+void BaseCoordinates::Leaf::ENZ::setInfoInt(std::vector<int>* infoInt) {this->infoInt = infoInt;}
