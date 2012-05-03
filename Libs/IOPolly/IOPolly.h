@@ -30,7 +30,7 @@ class reading
 {
  public:
 
-  std::string to;   //nome da visada
+  BaseCoordinates::Leaf::ENZ *to;   //ponteiro para a visada
   
   double horizontal_dir;  //observacao azimutal
   double vertical_dir;    //observacao zenital
@@ -41,8 +41,9 @@ class reading
 
   //construtores
 
-  reading(std::string to, double horizontal_dir, 
+  reading(BaseCoordinates::Leaf::ENZ *p_to, double horizontal_dir, 
 	  double vertical_dir, double distance, double height);
+
   reading();
 
  private:
@@ -53,7 +54,7 @@ class station
 {
  public:
 
-  std::string from; //nome da estacao
+  BaseCoordinates::Leaf::ENZ *from; //ponteiro para a estacao
  
   double height;
 
@@ -85,10 +86,11 @@ public:
   ~IOPolly();
 
   // adiciona uma estacao ah lista obs
-  void addStation (std::string from, double height);
+  void addStation (BaseCoordinates::Leaf::ENZ *p_from, double height);
 
   //adiciona uma leitura a uma estacao contida na lista obs
-  void addReading (std::string from, std::string to, double horizontal_dir, 
+  void addReading (BaseCoordinates::Leaf::ENZ *p_from, 
+		   BaseCoordinates::Leaf::ENZ *p_to, double horizontal_dir,
 		   double vertical_dir, double distance, double height);
 
   //remove um estacao da lista obs

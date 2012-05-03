@@ -40,53 +40,53 @@ std::string BaseCoordinates::Leaf::ENZ::ID() {return id;}
       
 void BaseCoordinates::Leaf::ENZ::ID(std::string id) {this->id = id;}
 
-int BaseCoordinates::Leaf::ENZ::E(){return m;}
+double BaseCoordinates::Leaf::ENZ::E(){return m;}
 
-void BaseCoordinates::Leaf::ENZ::E(int e) {m = e;}
+void BaseCoordinates::Leaf::ENZ::E(double e) {m = e;}
 
-int BaseCoordinates::Leaf::ENZ::N(){return p;}
+double BaseCoordinates::Leaf::ENZ::N(){return p;}
 
-void BaseCoordinates::Leaf::ENZ::N(int n) {p = n;}
+void BaseCoordinates::Leaf::ENZ::N(double n) {p = n;}
 
-int BaseCoordinates::Leaf::ENZ::Z(){return h;}
+double BaseCoordinates::Leaf::ENZ::Z(){return h;}
 
-void BaseCoordinates::Leaf::ENZ::Z(int z) {h = z;}
+void BaseCoordinates::Leaf::ENZ::Z(double z) {h = z;}
       
-int BaseCoordinates::Leaf::ENZ::Dev_E(){return sig2_m;}
+double BaseCoordinates::Leaf::ENZ::Dev_E(){return sig2_m;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_E(int devE) {sig2_m = devE;}
+void BaseCoordinates::Leaf::ENZ::Dev_E(double devE) {sig2_m = devE;}
 
-int BaseCoordinates::Leaf::ENZ::Dev_N(){return sig2_p;}
+double BaseCoordinates::Leaf::ENZ::Dev_N(){return sig2_p;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_N(int devN) {sig2_p = devN;}
+void BaseCoordinates::Leaf::ENZ::Dev_N(double devN) {sig2_p = devN;}
 
-int BaseCoordinates::Leaf::ENZ::Dev_Z(){return sig2_h;}
+double BaseCoordinates::Leaf::ENZ::Dev_Z(){return sig2_h;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_Z(int devZ) {sig2_h = devZ;}
+void BaseCoordinates::Leaf::ENZ::Dev_Z(double devZ) {sig2_h = devZ;}
 
-int BaseCoordinates::Leaf::ENZ::Vel_E(){return vel_m;}
+double BaseCoordinates::Leaf::ENZ::Vel_E(){return vel_m;}
 
-void BaseCoordinates::Leaf::ENZ::Vel_E(int velE) {vel_m = velE;}
+void BaseCoordinates::Leaf::ENZ::Vel_E(double velE) {vel_m = velE;}
 
-int BaseCoordinates::Leaf::ENZ::Vel_N(){return vel_p;}
+double BaseCoordinates::Leaf::ENZ::Vel_N(){return vel_p;}
 
-void BaseCoordinates::Leaf::ENZ::Vel_N(int velN) {vel_p = velN;}
+void BaseCoordinates::Leaf::ENZ::Vel_N(double velN) {vel_p = velN;}
 
-int BaseCoordinates::Leaf::ENZ::Vel_Z(){return vel_h;}
+double BaseCoordinates::Leaf::ENZ::Vel_Z(){return vel_h;}
 
-void BaseCoordinates::Leaf::ENZ::Vel_Z(int velZ) {vel_h = velZ;}
+void BaseCoordinates::Leaf::ENZ::Vel_Z(double velZ) {vel_h = velZ;}
 
-int BaseCoordinates::Leaf::ENZ::Dev_VE(){return sig2_Vm;}
+double BaseCoordinates::Leaf::ENZ::Dev_VE(){return sig2_Vm;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_VE(int dev_VE) {sig2_Vm = dev_VE;}
+void BaseCoordinates::Leaf::ENZ::Dev_VE(double dev_VE) {sig2_Vm = dev_VE;}
 
-int BaseCoordinates::Leaf::ENZ::Dev_VN(){return sig2_Vp;}
+double BaseCoordinates::Leaf::ENZ::Dev_VN(){return sig2_Vp;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_VN(int dev_VN) {sig2_Vp = dev_VN;}
+void BaseCoordinates::Leaf::ENZ::Dev_VN(double dev_VN) {sig2_Vp = dev_VN;}
 
-int BaseCoordinates::Leaf::ENZ::Dev_VP(){return sig2_Vh;}
+double BaseCoordinates::Leaf::ENZ::Dev_VP(){return sig2_Vh;}
 
-void BaseCoordinates::Leaf::ENZ::Dev_VP(int dev_VP) {sig2_Vh = dev_VP;}
+void BaseCoordinates::Leaf::ENZ::Dev_VP(double dev_VP) {sig2_Vh = dev_VP;}
 
 
 //lista strings com informação genérica

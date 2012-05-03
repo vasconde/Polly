@@ -25,53 +25,53 @@ namespace BaseCoordinates{
       
       void ID(std::string id);
 
-      int E();
+      double E();
 
-      void E(int e);
+      void E(double e);
       
-      int N();
+      double N();
 
-      void N(int n);
+      void N(double n);
 
-      int Z();
+      double Z();
 
-      void Z(int z);
+      void Z(double z);
       
-      int Dev_E();
+      double Dev_E();
 
-      void Dev_E(int devE);
+      void Dev_E(double devE);
 
-      int Dev_N();
+      double Dev_N();
 
-      void Dev_N(int devN);
+      void Dev_N(double devN);
 
-      int Dev_Z();
+      double Dev_Z();
 
-      void Dev_Z(int devZ);
+      void Dev_Z(double devZ);
 
-      int Vel_E();
+      double Vel_E();
 
-      void Vel_E(int velE);
+      void Vel_E(double velE);
 
-      int Vel_N();
+      double Vel_N();
 
-      void Vel_N(int velN);
+      void Vel_N(double velN);
 
-      int Vel_Z();
+      double Vel_Z();
 
-      void Vel_Z(int velZ);
+      void Vel_Z(double velZ);
 
-      int Dev_VE();
+      double Dev_VE();
 
-      void Dev_VE(int dev_VE);
+      void Dev_VE(double dev_VE);
 
-      int Dev_VN();
+      double Dev_VN();
 
-      void Dev_VN(int dev_VN);
+      void Dev_VN(double dev_VN);
 
-      int Dev_VP();
+      double Dev_VP();
 
-      void Dev_VP(int dev_VP);
+      void Dev_VP(double dev_VP);
 
       std::vector<std::string>* getInfoString();
 
