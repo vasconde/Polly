@@ -58,6 +58,8 @@ class station
  
   double height;
 
+  double azimuth0; // PT - Rumo 0
+
   std::list <struct reading> readings;
 
   station(); // construtor
