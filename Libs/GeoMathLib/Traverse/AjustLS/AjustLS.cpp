@@ -6,3 +6,20 @@
 
 #include "AjustLS.h"
 
+GeoMathLib::Traverse::AjustLS::AjustLS()
+{
+
+}
+
+GeoMathLib::Traverse::AjustLS::~AjustLS()
+{
+
+}
+
+// Iteracao do processo de ajustamento dos minimos
+// quadrados
+
+void GeoMathLib::Traverse::AjustLS::iteration()
+{
+
+}
