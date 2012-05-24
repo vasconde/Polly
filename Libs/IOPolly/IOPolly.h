@@ -87,6 +87,12 @@ public:
   //destrutor IOPolly
   ~IOPolly();
 
+  //aloca memoria para o TCStations
+  void new_TCStations ();
+
+  //liberta memoria para o TCStations
+  void delete_TCStations ();
+
   // adiciona uma estacao ah lista obs
   void addStation (BaseCoordinates::Leaf::ENZ *p_from, double height);
 
@@ -113,9 +119,21 @@ public:
   void obsFromTextFile (std::string filePath, int angle_unit_type);
 
 private:
-   
+  
+  
 };
 
+// alocacao de memoria para a lista de estacoes
+inline void IOPolly::new_TCStations ()
+{
+  TCStations = new BaseCoordinates::Body::GeoCoord();
+}
+
+// libertacao de memoria para a lista de estacoes
+inline void IOPolly::delete_TCStations ()
+{
+  delete TCStations;
+}
 
 
 #endif // _IOPOLLY_H_

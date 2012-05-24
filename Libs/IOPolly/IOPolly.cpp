@@ -32,13 +32,13 @@ station::station()
 //construtor IOPolly
 IOPolly::IOPolly()
 {
-  TCStations = new BaseCoordinates::Body::GeoCoord();
+  new_TCStations ();
 }
 
 //destrutor IOPolly
 IOPolly::~IOPolly()
 {
-  delete TCStations;
+  delete_TCStations ();
 }
 
 // adiciona uma estacao ah lista obs
