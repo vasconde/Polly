@@ -17,8 +17,7 @@ void Run()
 	{
 	  
 	}
-    }
-  
+    }  
 }
       
 void calcFixedAzimuth()
