@@ -1,77 +1,100 @@
 #include <iostream>
+#include <list>
 
-#include "IOPolly.h"
+#include "../BaseCoordinates/Leafs/ENZ.h"
 
-// Rotina para imprimir a lista de observacoes
-// Apenas sao apresentados os nomes das estacoes
-// e das leituras (estas ultimas aparecem identadas)
-void printObs (IOPolly *t)
-{
+#include "Data.h"
+#include "Station.h"
+#include "Reading.h"
 
-  std::list<struct station>::iterator i;
 
-  for(i = t->obs.begin(); i != t->obs.end(); i++)
-    {
-      std::cout << i->from->ID() << std::endl;
-
-      std::list<struct reading>::iterator j;
-      for(j = i->readings.begin(); j != i->readings.end(); j++)
-	{
-	  std::cout << "  " << j->to->ID() << std::endl;
-	}
-    }
-}
-
-//carregar os dados a partir de um ficheiro de texto
 int main ()
 {
-  IOPolly *t = new IOPolly();
+  //criacao dos pontos
+  BaseCoordinates::Leaf::ENZ *p1 = new BaseCoordinates::Leaf::ENZ(23,22,4,"Ponto 1");
 
-  //eh necessario primeiro carregar as coordenadas
-  t->StationsFromTextFile ("dataControl.txt", 
-			   "dataTraverse.txt", 
-			   1);
+  BaseCoordinates::Leaf::ENZ *p2 = new BaseCoordinates::Leaf::ENZ(56,25,8,"Ponto 2");
+  BaseCoordinates::Leaf::ENZ *p3 = new BaseCoordinates::Leaf::ENZ(43,24,8,"Ponto 3");
+  BaseCoordinates::Leaf::ENZ *p4 = new BaseCoordinates::Leaf::ENZ(76,23,9,"Ponto 4");
 
-  //e so depois as observacoes
-  t->obsFromTextFile ("dataFileTest.txt", 2); // 2 - degree
+  //criacao da estacao 1 e respectivas leituras
+  IOPolly::Station *s1 = new IOPolly::Station(p1, 1.50, 46);
 
-  printObs(t);
+  IOPolly::Reading *r1_2 = new IOPolly::Reading(p2, 9.0 ,10.0, 13.4, 9.3);
+  IOPolly::Reading *r1_3 = new IOPolly::Reading(p3, 10.0 ,11.0, 14.4, 9.4);
 
-  delete t;
+  s1->addReading(r1_2);
+  s1->addReading(r1_3);
+
+  //criacao da estacao 2 e respectivas leituras
+  IOPolly::Station *s2 = new IOPolly::Station(p2, 1.43, 180);
+
+  IOPolly::Reading *r2_4 = new IOPolly::Reading(p4, 11.0 ,12.0, 15.4, 9.5);
+  
+  s2->addReading(r2_4);
+
+  //apresentacao dos resultados
+
+  //station 1
+
+  std::cout << s1->getFrom()->ID() << std::endl;
+
+  std::list<IOPolly::Reading *>::iterator i;
+
+  for(i = s1->getReadings()->begin(); i != s1->getReadings()->end(); i++)
+    {
+      std::cout << "  " << (*i)->getTo()->ID() << std::endl;
+    }
+
+  //station 2
+  std::cout << s2->getFrom()->ID() << std::endl;
+
+  for(i = s2->getReadings()->begin(); i != s2->getReadings()->end(); i++)
+    {
+      std::cout << "  " << (*i)->getTo()->ID() << std::endl;
+    }
+
+  //Criacao da data
+  
+  IOPolly::Data *d = new IOPolly::Data();
+
+  d->addStation(s1);
+  d->addStation(s2);
+
+  std::cout << " * * * * * * * * " << std::endl;
+
+  std::list<IOPolly::Station *>::iterator j;
+
+  std::list<IOPolly::Reading *>::iterator k;
+
+  for(j = d->getStations()->begin(); j != d->getStations()->end(); j++)
+    {
+      std::cout << (*j)->getFrom()->ID() << std::endl;            
+
+      for(k = (*j)->getReadings()->begin(); k != (*j)->getReadings()->end(); k++)
+	{
+	  std::cout << "  " << (*k)->getTo()->ID() << std::endl;
+	}
+    }
+
+  //libertacao da memoria
+
+  delete p1;
+
+  delete p2;
+  delete p3;
+  delete p4;
+
+  delete s1;
+
+  delete r1_2;
+  delete r1_3;
+
+  delete s2;
+
+  delete r2_4;
+
+  delete d;
 
   return 0;
 }
-
-// Este teste tem de ser adaptado a nova estrutura de
-// dados
-
-// carregar as estruturas uma a uma
-//int main_off ()
-//{
-  //IOPolly *t = new IOPolly();
-
-  //stations
-  //t->addStation("V1", 0.98);
-  //t->addStation("V2", 0.87);
-  //t->addStation("V3", 0.88);
-
-  //readings per stations
-  //t->addReading("V1", "R1", 21,21,21, 22);
-  //t->addReading("V1", "R2", 23,23,23, 24);
-  //t->addReading("V3", "R3", 25,25,25, 26);
-
-  //printObs(t); //before removed elements
-
-  //std::cout << "-----" << std::endl;
-
-  //t->removeStation ("V2");
-  //t->removeReading ("V1", "R2");
-
-  //printObs(t); //after removed element
-
-  //delete t;
-
-  //return 0;
-  //}
-
-

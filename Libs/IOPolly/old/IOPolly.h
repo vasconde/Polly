@@ -30,6 +30,16 @@ class reading
 {
  public:
 
+  //construtores
+
+  reading(BaseCoordinates::Leaf::ENZ *p_to, double horizontal_dir, 
+	  double vertical_dir, double distance, double height);
+
+  reading();
+
+  //destrutor
+  ~reading();
+
   BaseCoordinates::Leaf::ENZ *to;   //ponteiro para a visada
   
   double horizontal_dir;  //observacao azimutal
@@ -37,14 +47,6 @@ class reading
   double distance;        //distancia
 
   double height; // tripod height
-
-
-  //construtores
-
-  reading(BaseCoordinates::Leaf::ENZ *p_to, double horizontal_dir, 
-	  double vertical_dir, double distance, double height);
-
-  reading();
 
  private:
 
@@ -54,15 +56,17 @@ class station
 {
  public:
 
+  //construtor e destrutor
+  station();
+  ~station();
+
   BaseCoordinates::Leaf::ENZ *from; //ponteiro para a estacao
  
   double height;
 
   double azimuth0; // PT - Rumo 0
 
-  std::list <struct reading> readings;
-
-  station(); // construtor
+  std::list <reading *> *readings;
 
  private:
 
@@ -75,7 +79,7 @@ public:
 
   // lista com os estacionamentos que por sua vez
   // teem um lista com as leituras
-  std::list<station> obs;
+  std::list<station *> *obs;
 
   //lista de estacoes de coordenads conhecidas - Control Stations
   //getInfoInt[0] -> 0 se Traverse Station; 1 se Control Station
@@ -92,6 +96,12 @@ public:
 
   //liberta memoria para o TCStations
   void delete_TCStations ();
+
+  //aloca memoria para a lista de obs
+  void new_obs ();
+
+  //liberta memoria para a lista de obs
+  void delete_obs ();
 
   // adiciona uma estacao ah lista obs
   void addStation (BaseCoordinates::Leaf::ENZ *p_from, double height);
@@ -135,5 +145,16 @@ inline void IOPolly::delete_TCStations ()
   delete TCStations;
 }
 
+//aloca memoria para a lista de obs
+inline void IOPolly::new_obs ()
+{
+  obs = new std::list<station *>();
+}
+
+//liberta memoria para a lista de obs
+inline void IOPolly::delete_obs ()
+{
+  delete obs;
+}
 
 #endif // _IOPOLLY_H_

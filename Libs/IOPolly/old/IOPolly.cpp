@@ -9,6 +9,8 @@
 
 #include "IOPolly.h"
 
+// INICIO READING CLASS
+
 reading::reading(BaseCoordinates::Leaf::ENZ *p_to, double horizontal_dir, 
 		 double vertical_dir, double distance, double height)
 {
@@ -24,33 +26,53 @@ reading::reading()
 
 }
 
-station::station()
+reading::~reading()
 {
 
 }
+
+// FIM READING CLASS
+
+// INICIO STATION CLASS
+
+station::station()
+{
+  readings = new std::list <reading *>();
+}
+
+station::~station()
+{
+  delete readings;
+}
+
+// FIM STATION CLASS
+
+// INICIO IOPOLLY CLASS
 
 //construtor IOPolly
 IOPolly::IOPolly()
 {
   new_TCStations ();
+  new_obs ();
 }
 
 //destrutor IOPolly
 IOPolly::~IOPolly()
 {
   delete_TCStations ();
+  delete_obs ();
 }
 
 // adiciona uma estacao ah lista obs
 
 void IOPolly::addStation (BaseCoordinates::Leaf::ENZ *p_from, double height)
 {
-  station s;
+  station *s = new station();
 
-  s.from = p_from;
-  s.height = height;
+  s->from = p_from;
+  s->height = height;
 
-  obs.push_back(s);
+  obs->push_back(s);
 }
 
 //adiciona uma leitura a uma estacao contida na lista obs
@@ -60,14 +82,15 @@ void IOPolly::addReading (BaseCoordinates::Leaf::ENZ *p_from,
 			  double vertical_dir, double distance, double height)
 {
 
-  reading r(p_to, horizontal_dir, vertical_dir, distance, height);
+  reading *r = 
+    new reading (p_to, horizontal_dir, vertical_dir, distance, height);
 
-  std::list<station>::iterator i;
-  for(i = obs.begin(); i != obs.end(); i++)
+  std::list<station *>::iterator i;
+  for(i = obs->begin(); i != obs->end(); i++)
     {
       if(i->from == p_from)
 	{
-	  i->readings.push_back(r);
+	  i->readings->push_back(r);
 	  break;
 	}
     }
@@ -79,13 +102,13 @@ void IOPolly::removeStation (std::string from)
 {
   BaseCoordinates::Leaf::ENZ *p_from = TCStations->getEnzPoint(from);
 
-  std::list<station>::iterator i;
+  std::list<station *>::iterator i;
 
-  for(i = obs.begin(); i != obs.end(); i++)
+  for(i = obs->begin(); i != obs->end(); i++)
     {
       if(i->from == p_from)
 	{
-	  obs.erase(i);
+	  obs->erase(i);
 	  break;
 	}
     }
@@ -102,17 +125,17 @@ void IOPolly::removeReading (std::string from, std::string to)
 
   std::list<station>::iterator i;
 
-  for(i = obs.begin(); i != obs.end(); i++)
+  for(i = obs->begin(); i != obs->end(); i++)
     {
       if(i->from == p_from)
 	{
 	  std::list<reading>::iterator j;
 	  
-	  for(j = i->readings.begin(); j != i->readings.end(); j++)
+	  for(j = i->readings->begin(); j != i->readings->end(); j++)
 	    {
 	      if(j->to == p_to)
 		{
-		  i->readings.erase(j);
+		  i->readings->erase(j);
 		  break;
 		}
 	    }
@@ -186,7 +209,7 @@ void IOPolly::obsFromTextFile (std::string filePath, int angle_unit_type)
 		  break;
 		}
 	      
-	      addReading((*(--obs.end())).from,
+	      addReading((*(--(obs->end()))).from,
 			 TCStations->getEnzPoint(elements[0]), horizontal_dir, 
 			 vertical_dir, std::atof(elements[3].c_str()),
 			 std::atof(elements[4].c_str()));
