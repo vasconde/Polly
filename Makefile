@@ -4,7 +4,7 @@ CC = g++
 CFLAGS = -g -Wall -std=c++98
 
 BCOODIR = ./Libs/BaseCoordinates
-DPROBLEMDIR = ./Libs/GeoMathLib/Traverse
+DPROBLEMDIR = ./Libs/GeoMathLib/Traverse/DProblem
 IOPOLLYDIR = ./Libs/IOPolly
 SIUNITSDIR = ./Libs/SIUnits
 
@@ -27,10 +27,17 @@ $(BCOODIR)/Body/GeoCoord.o: $(BCOODIR)/Body/GeoCoord.h $(BCOODIR)/Body/GeoCoord.
 $(DPROBLEMDIR)/DProblem.o: $(DPROBLEMDIR)/DProblem.h $(DPROBLEMDIR)/DProblem.cpp
 	$(CC) $(CFLAGS) -c $(DPROBLEMDIR)/DProblem.cpp -o $(DPROBLEMDIR)/DProblem.o
 
-# IOPolly.o
+# Data.o Station.o Reading.o
 
-$(IOPOLLYDIR)/IOPolly.o: $(IOPOLLYDIR)/IOPolly.h $(IOPOLLYDIR)/IOPolly.cpp
-	$(CC) $(CFLAGS) -c $(IOPOLLYDIR)/IOPolly.cpp -o $(IOPOLLYDIR)/IOPolly.o
+$(IOPOLLYDIR)/Data.o: $(IOPOLLYDIR)/Data.h $(IOPOLLYDIR)/Data.cpp $(IOPOLLYDIR)/Station.h $(IOPOLLYDIR)/Reading.h
+	$(CC) $(CFLAGS) -c $(IOPOLLYDIR)/Data.cpp -o $(IOPOLLYDIR)/Data.o
+
+$(IOPOLLYDIR)/Station.o: $(IOPOLLYDIR)/Station.h $(IOPOLLYDIR)/Station.cpp $(IOPOLLYDIR)/Reading.h
+	$(CC) $(CFLAGS) -c $(IOPOLLYDIR)/Station.cpp -o $(IOPOLLYDIR)/Station.o
+
+$(IOPOLLYDIR)/Reading.o: $(IOPOLLYDIR)/Reading.h $(IOPOLLYDIR)/Reading.cpp
+	$(CC) $(CFLAGS) -c $(IOPOLLYDIR)/Reading.cpp -o $(IOPOLLYDIR)/Reading.o
+
 
 # SIUnits.o
 
