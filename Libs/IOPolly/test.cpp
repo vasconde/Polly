@@ -61,6 +61,14 @@ int main ()
   d->addStation(s1);
   d->addStation(s2);
 
+  // INICIO - UTILIZANDO APENAS A CLASSE DATA
+  
+  IOPolly::Station *s3 = d->newStation(p4, 1.45, 93.0);
+
+  d->newReading (s3, p3, 23, 54, 56, 1.54);
+  
+  // FIM - UTILIZANDO APENAS A CLASSE DATA
+
   std::cout << " * * * * * * * * " << std::endl;
 
   std::list<IOPolly::Station *>::iterator j;
@@ -76,6 +84,13 @@ int main ()
 	  std::cout << "  " << (*k)->getTo()->ID() << std::endl;
 	}
     }
+
+  std::cout << " * * * * * * * * " << std::endl;
+
+  IOPolly::Station * ss = d->searchENZ (p2);
+
+  if(ss != NULL)
+    std::cout << ss->getFrom()->ID() << std::endl;
 
   //libertacao da memoria
 

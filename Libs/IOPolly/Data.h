@@ -34,8 +34,20 @@ namespace IOPolly
     inline void allocListStations ();
     inline void freeListStations ();
 
-    //adiciona uma nova station ah lista stations
+    //adiciona uma station ah lista stations
     inline void addStation (Station *p_newStation);
+
+    //cria e adiciona uma nova station ah lista stations
+    inline Station* newStation (BaseCoordinates::Leaf::ENZ *p,
+				double height, double az0);
+
+    //cria e adiciona uma nova reading ah lista de readigs de uma sation
+    inline void newReading (Station *s, BaseCoordinates::Leaf::ENZ *p,
+			    double h_dir, double v_dir, double dist, 
+			    double height);
+
+    //retorna a station com um determinado ENZ
+    Station* searchENZ (BaseCoordinates::Leaf::ENZ *p);
 
     // GET & SET //
 
@@ -87,6 +99,29 @@ namespace IOPolly
     stations->push_back(p_newStation);
   }
 
+  //cria e adiciona uma nova station ah lista stations
+  inline Station* Data::newStation (BaseCoordinates::Leaf::ENZ *p, 
+				double height, double az0)
+  {
+    //criacao da estacao 1 e respectivas leituras
+    Station *s = new IOPolly::Station(p, height, az0);
+    //adiciona ah lista
+    addStation (s);
+
+    return s;
+  }
+
+  //cria e adiciona uma nova reading ah lista de readigs de uma sation
+  inline void Data::newReading (Station *s, BaseCoordinates::Leaf::ENZ *p,
+				double h_dir, double v_dir, double dist, 
+				double height)
+  {
+    //criacao da reading e respectivas leituras
+    Reading *r = new Reading(p, h_dir , v_dir, dist, height);
+    //adiciona ah lista    
+    s->addReading(r);
+  }
+  
   // * GET & SET * //
 
   //Points
