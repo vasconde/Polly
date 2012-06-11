@@ -34,6 +34,12 @@ namespace IOPolly
     inline void allocListStations ();
     inline void freeListStations ();
 
+    //adiciona um novo ponto ah lista points
+    //info define se eh um ponto fixo:
+    //info -> 0 se Traverse Station; 1 se Control Station
+    inline BaseCoordinates::Leaf::ENZ * newPoint 
+      (std::string name, double e, double n, double z, int info);
+
     //adiciona uma station ah lista stations
     inline void addStation (Station *p_newStation);
 
@@ -91,6 +97,21 @@ namespace IOPolly
   inline void Data::freeListStations ()
   {
     delete stations;
+  }
+
+  //adiciona um novo ponto ah lista points
+  //info define se eh um ponto fixo:
+  //info -> 0 se Traverse Station; 1 se Control Station
+  inline BaseCoordinates::Leaf::ENZ * Data::newPoint 
+    (std::string name, double e, double n, double z, int info)
+  {
+    BaseCoordinates::Leaf::ENZ *p = new BaseCoordinates::Leaf::ENZ(e, n, z, name);
+    
+    p->getInfoInt()->push_back(info); //caso de ser uma control station
+    
+    points->addEnzPoint(p);
+
+    return p;
   }
 
   //adiciona um novo station a lista stations
