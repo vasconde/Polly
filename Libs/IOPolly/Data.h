@@ -15,6 +15,8 @@
 #include "Reading.h"
 #include "Station.h"
 
+#include <string>
+
 namespace IOPolly
 {
   class Data
@@ -44,11 +46,11 @@ namespace IOPolly
     inline void addStation (Station *p_newStation);
 
     //cria e adiciona uma nova station ah lista stations
-    inline Station* newStation (BaseCoordinates::Leaf::ENZ *p,
+    inline Station* newStation (std::string id, BaseCoordinates::Leaf::ENZ *p,
 				double height, double az0);
 
     //cria e adiciona uma nova reading ah lista de readigs de uma sation
-    inline void newReading (Station *s, BaseCoordinates::Leaf::ENZ *p,
+    inline void newReading (std::string id, Station *s, BaseCoordinates::Leaf::ENZ *p,
 			    double h_dir, double v_dir, double dist, 
 			    double height);
 
@@ -121,11 +123,11 @@ namespace IOPolly
   }
 
   //cria e adiciona uma nova station ah lista stations
-  inline Station* Data::newStation (BaseCoordinates::Leaf::ENZ *p, 
+  inline Station* Data::newStation (std::string id, BaseCoordinates::Leaf::ENZ *p, 
 				double height, double az0)
   {
     //criacao da estacao 1 e respectivas leituras
-    Station *s = new IOPolly::Station(p, height, az0);
+    Station *s = new IOPolly::Station(id, p, height, az0);
     //adiciona ah lista
     addStation (s);
 
@@ -133,12 +135,12 @@ namespace IOPolly
   }
 
   //cria e adiciona uma nova reading ah lista de readigs de uma sation
-  inline void Data::newReading (Station *s, BaseCoordinates::Leaf::ENZ *p,
+  inline void Data::newReading (std::string id, Station *s, BaseCoordinates::Leaf::ENZ *p,
 				double h_dir, double v_dir, double dist, 
 				double height)
   {
     //criacao da reading e respectivas leituras
-    Reading *r = new Reading(p, h_dir , v_dir, dist, height);
+    Reading *r = new Reading(id, p, h_dir , v_dir, dist, height);
     //adiciona ah lista    
     s->addReading(r);
   }

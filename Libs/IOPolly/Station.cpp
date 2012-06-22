@@ -7,9 +7,10 @@ IOPolly::Station::Station()
   allocListReadings ();
 }
 
-IOPolly::Station::Station(BaseCoordinates::Leaf::ENZ *from, double height, 
-			  double az0)
+IOPolly::Station::Station(std::string id, BaseCoordinates::Leaf::ENZ *from, 
+			  double height, double az0)
 {
+  this->id = id;
   this->from = from;
   this->height = height;
   this->az0 = az0;
@@ -17,9 +18,11 @@ IOPolly::Station::Station(BaseCoordinates::Leaf::ENZ *from, double height,
 }
 
 
-IOPolly::Station::Station(BaseCoordinates::Leaf::ENZ *from, double height, 
-		 double az0, std::list <Reading *> *readings)
+IOPolly::Station::Station(std::string id, BaseCoordinates::Leaf::ENZ *from, 
+			  double height, double az0, 
+			  std::list <Reading *> *readings)
 {
+  this->id = id;
   this->from = from;
   this->height = height;
   this->az0 = az0;

@@ -20,15 +20,26 @@ namespace IOPolly
   class Station
   {
   public:
+    
+    // construtor basico
+    // eh alocada uma lista readings vazia
     Station();
-    Station(BaseCoordinates::Leaf::ENZ *from, double height, 
+
+    // construtor com preenchimento dos atributos
+    // eh alocada uma lista readings vazia
+    Station(std::string id, BaseCoordinates::Leaf::ENZ *from, double height, 
 	    double az0);
-    Station(BaseCoordinates::Leaf::ENZ *from, double height, 
+
+    // construtor com preenchimento dos atributos
+    // NAO eh alocada uma lista readings vazia
+    Station(std::string id, BaseCoordinates::Leaf::ENZ *from, double height, 
 	    double az0, std::list <Reading *> *readings);
+
+    // destrutor
     ~Station();
 
 
-    //metodos
+    // *** METODOS ***
 
     //aloca e liberta memoria para a lista de readings
     inline void allocListReadings ();
@@ -39,6 +50,10 @@ namespace IOPolly
     inline void addReading (Reading *p_newReading);
 
     // GET & SET //
+
+    // id
+    inline std::string getId();
+    inline void setId(std::string newval);
 
     // from
     inline BaseCoordinates::Leaf::ENZ * getFrom() const;
@@ -59,6 +74,8 @@ namespace IOPolly
   private:
 
     // atributos //
+
+    std::string id; // identificador unico
 
     BaseCoordinates::Leaf::ENZ *from; //ponteiro para a estacao
  
@@ -82,6 +99,13 @@ namespace IOPolly
   }
 
   //GET & SET
+
+  // id
+  inline std::string Station::getId() 
+  { return id; }
+  
+  inline void Station::setId(std::string newval)
+  { id = newval; }
 
   // from
   inline BaseCoordinates::Leaf::ENZ * Station::getFrom() const 

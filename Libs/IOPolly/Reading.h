@@ -20,7 +20,7 @@ namespace IOPolly
 
     //construtores
 
-    Reading(BaseCoordinates::Leaf::ENZ *p_to, double h_dir, 
+    Reading(std::string id, BaseCoordinates::Leaf::ENZ *p_to, double h_dir, 
 	    double v_dir, double dist, double height);
 
     Reading();
@@ -30,24 +30,35 @@ namespace IOPolly
 
     //metodos//
 
+    // id
+    inline std::string getId();
+    inline void setId(std::string newval);
+
+    // to
     inline BaseCoordinates::Leaf::ENZ * getTo() const;
     inline void setTo(BaseCoordinates::Leaf::ENZ * newval);
 
+    // h_dir
     inline const double& getH_dir() const;
     inline void setH_dir(const double& newval);
 
+    // v_dir
     inline const double& getV_dir() const;
     inline void setV_dir(const double& newval);
 
+    // dist
     inline const double& getDist() const;
     inline void setDist(const double& newval);
 
+    // height
     inline const double& getHeight() const;
     inline void setHeight(const double& newval);
 
   private:
         
     //atributos//
+
+    std::string id; //identificador unico
 
     BaseCoordinates::Leaf::ENZ *to;   //ponteiro para a visada
   
@@ -58,6 +69,9 @@ namespace IOPolly
     double height; // tripod height
 
   };
+
+  inline std::string Reading::getId() { return id; }		
+  inline void Reading::setId(std::string newval) { id = newval; }
 
   inline BaseCoordinates::Leaf::ENZ * Reading::getTo() const { return to; };
   inline void Reading::setTo(BaseCoordinates::Leaf::ENZ * newval) { to = newval; };

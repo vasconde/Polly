@@ -18,9 +18,9 @@ int main ()
   BaseCoordinates::Leaf::ENZ *p2 = d->newPoint ("Ponto 2", 21.5, 98.2, 124.1, 0);
 
   
-  IOPolly::Station *s1 = d->newStation(p1, 1.45, 93.0);
+  IOPolly::Station *s1 = d->newStation("S1", p1, 1.45, 93.0);
 
-  d->newReading (s1, p2, 23, 54, 56, 1.54);  
+  d->newReading ("S1->R1", s1, p2, 23, 54, 56, 1.54);  
 
   std::cout << " * * * * * * * * " << std::endl;
 

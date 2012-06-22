@@ -2,10 +2,10 @@
 #include "Reading.h"
 
 // Construtor
-IOPolly::Reading::Reading(BaseCoordinates::Leaf::ENZ *p_to, 
-			  double h_dir, 
-			  double v_dir, double dist, double height)
+IOPolly::Reading::Reading(std::string id, BaseCoordinates::Leaf::ENZ *p_to, 
+			  double h_dir, double v_dir, double dist, double height)
 {
+  this->id = id;
   this->to = p_to;
   this->h_dir = h_dir; 
   this->v_dir = v_dir; 
