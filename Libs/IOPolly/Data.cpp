@@ -104,3 +104,70 @@ void IOPolly::Data::setId (unsigned int sPos, unsigned int rPos, std::string new
 {
   getReading (sPos, rPos)->setId(newId);
 }
+
+// From and To
+
+BaseCoordinates::Leaf::ENZ * IOPolly::Data::getFrom (unsigned int pos)
+{
+  BaseCoordinates::Leaf::ENZ * from = getStation(pos)->getFrom();
+
+  return from;
+}
+
+void IOPolly::Data::setFrom (unsigned int pos, 
+			     BaseCoordinates::Leaf::ENZ * newFrom)
+{
+  getStation(pos)->setFrom(newFrom);
+}
+    
+BaseCoordinates::Leaf::ENZ * IOPolly::Data::getTo (unsigned int sPos, 
+						   unsigned int rPos)
+{
+  BaseCoordinates::Leaf::ENZ * to = getReading(sPos, rPos)->getTo();
+
+  return to;
+}
+
+void IOPolly::Data::setTo (unsigned int sPos, unsigned int rPos,
+			   BaseCoordinates::Leaf::ENZ * newTo)
+{
+  getReading (sPos, rPos)->setTo(newTo);
+}
+
+// Height
+const double IOPolly::Data::getHeight (unsigned int pos)
+{
+  double height = getStation(pos)->getHeight();
+
+  return height;
+}
+
+void IOPolly::Data::setHeight (unsigned int pos, const double& newval)
+{
+  getStation(pos)->setHeight(newval);
+}
+    
+const double IOPolly::Data::getHeight (unsigned int sPos, unsigned int rPos)
+{
+  double height = getReading(sPos, rPos)->getHeight();
+
+  return height;
+}
+
+void IOPolly::Data::setHeight (unsigned int sPos, unsigned int rPos, const double& newval)
+{
+  getReading (sPos, rPos)->setHeight(newval);
+}
+
+// az0 - Station
+const double IOPolly::Data::getAz0 (unsigned int pos)
+{
+  double az0 = getStation(pos)->getAz0();
+
+  return az0;
+}
+
+void IOPolly::Data::setAz0 (unsigned int pos, const double& newval)
+{
+  getStation(pos)->setAz0(newval);
+}

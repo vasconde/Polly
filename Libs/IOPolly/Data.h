@@ -1,3 +1,4 @@
+
 /*
  * IOPolly
  * Classe especializada para entrada e saida
@@ -84,12 +85,29 @@ namespace IOPolly
 
     // retorna o id das estacoes e dos readings
     std::string getId (unsigned int pos);
-
     void setId (unsigned int pos, std::string newId);
 
     std::string getId (unsigned int sPos, unsigned int rPos);
-
     void setId (unsigned int sPos, unsigned int rPos, std::string newId);
+
+    // From and To
+    BaseCoordinates::Leaf::ENZ * getFrom (unsigned int pos);
+    void setFrom (unsigned int pos, BaseCoordinates::Leaf::ENZ * newFrom);
+    
+    BaseCoordinates::Leaf::ENZ * getTo (unsigned int sPos, unsigned int rPos);
+    void setTo (unsigned int sPos, unsigned int rPos,
+		BaseCoordinates::Leaf::ENZ * newTo);
+
+    // Height
+    const double getHeight (unsigned int pos);
+    void setHeight (unsigned int pos, const double& newval);
+    
+    const double getHeight (unsigned int sPos, unsigned int rPos);
+    void setHeight (unsigned int sPos, unsigned int rPos, const double& newval);
+
+    // az0 - Station
+    const double getAz0 (unsigned int pos);
+    void setAz0 (unsigned int pos, const double& newval);
 
   private:
 
