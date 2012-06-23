@@ -16,11 +16,21 @@ int main ()
 
   BaseCoordinates::Leaf::ENZ *p1 = d->newPoint ("Ponto 1", 45.5, 78.4, 120.0, 1);
   BaseCoordinates::Leaf::ENZ *p2 = d->newPoint ("Ponto 2", 21.5, 98.2, 124.1, 0);
+  BaseCoordinates::Leaf::ENZ *p3 = d->newPoint ("Ponto 3", 21.5, 98.2, 124.1, 0);
 
   
   IOPolly::Station *s1 = d->newStation("S1", p1, 1.45, 93.0);
+  IOPolly::Station *s2 = d->newStation("S2", p2, 1.45, 93.0);
 
   d->newReading ("S1->R1", s1, p2, 23, 54, 56, 1.54);  
+  d->newReading ("S1->R2", s1, p3, 23, 54, 56, 1.54);
+  d->newReading ("S2->R1", s2, p3, 23, 54, 56, 1.54);  
+
+  d->setId(0, "ALO");
+
+  std::cout << d->getId(0) << std::endl;
+  std::cout << d->getId(1,0) << std::endl;
+  std::cout << d->getId(1) << std::endl;
 
   std::cout << " * * * * * * * * " << std::endl;
 

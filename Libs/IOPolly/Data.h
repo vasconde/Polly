@@ -10,12 +10,17 @@
 #ifndef _DATA_H_
 #define _DATA_H_
 
+// IOPolly libs
 #include "../BaseCoordinates/Leafs/ENZ.h"
 #include "../BaseCoordinates/Body/GeoCoord.h"
 #include "Reading.h"
 #include "Station.h"
 
+// C++ libs
 #include <string>
+
+// C libs
+#include <cassert>
 
 namespace IOPolly
 {
@@ -57,7 +62,7 @@ namespace IOPolly
     //retorna a station com um determinado ENZ
     Station* searchENZ (BaseCoordinates::Leaf::ENZ *p);
 
-    // GET & SET //
+    // GET & SET for DATA attributes //
 
     //points
     inline BaseCoordinates::Body::GeoCoord * getPoints() const;
@@ -66,6 +71,16 @@ namespace IOPolly
     //stations
     inline std::list <Station *> * getStations() const;
     inline void setStations(std::list <Station *> * newval);
+
+    // GET & SET for STATION and READINGS attributes //
+
+    std::string getId (unsigned int pos);
+
+    void setId (unsigned int pos, std::string newId);
+
+    std::string getId (unsigned int sPos, unsigned int rPos);
+
+    /* void setID (int sPos, int rPos, std::string newId); */
 
   private:
 
@@ -145,7 +160,7 @@ namespace IOPolly
     s->addReading(r);
   }
   
-  // * GET & SET * //
+  // * GET & SET for DATA attributes //
 
   //Points
   inline BaseCoordinates::Body::GeoCoord * Data::getPoints() const
@@ -166,6 +181,10 @@ namespace IOPolly
     freeListStations (); // liberta a memoria
     stations = newval; 
   }
+
+  // * GET & SET for STATION attributes //
+
+
 }
 
 #endif // _DATA_H_
