@@ -89,7 +89,7 @@ namespace IOPolly
 
     std::string getId (unsigned int sPos, unsigned int rPos);
 
-    /* void setID (int sPos, int rPos, std::string newId); */
+    void setId (unsigned int sPos, unsigned int rPos, std::string newId);
 
   private:
 

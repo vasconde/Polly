@@ -28,6 +28,9 @@ int main ()
 
   // apresentacao dos elementos na consola
 
+  d->setId(0,0,"vasco conde");
+  std::cout << d->getId(0,0) << std::endl;
+
   for(unsigned int i = 0; i < d->sizeStations(); i++)
     {
       std::cout << d->getStation(i)->getFrom()->ID() << std::endl;
