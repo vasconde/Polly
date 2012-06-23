@@ -24,32 +24,68 @@ int main ()
 
   d->newReading ("S1->R1", s1, p2, 23, 54, 56, 1.54);  
   d->newReading ("S1->R2", s1, p3, 23, 54, 56, 1.54);
-  d->newReading ("S2->R1", s2, p3, 23, 54, 56, 1.54);  
+  d->newReading ("S2->R1", s2, p1, 23, 54, 56, 1.54);
 
-  d->setId(0, "ALO");
+  // apresentacao dos elementos na consola
 
-  std::cout << d->getId(0) << std::endl;
-  std::cout << d->getId(1,0) << std::endl;
-  std::cout << d->getId(1) << std::endl;
-
-  std::cout << " * * * * * * * * " << std::endl;
-
-  std::list<IOPolly::Station *>::iterator j;
-
-  std::list<IOPolly::Reading *>::iterator k;
-
-  for(j = d->getStations()->begin(); j != d->getStations()->end(); j++)
+  for(unsigned int i = 0; i < d->sizeStations(); i++)
     {
-      std::cout << (*j)->getFrom()->ID() << std::endl;            
+      std::cout << d->getStation(i)->getFrom()->ID() << std::endl;
 
-      for(k = (*j)->getReadings()->begin(); k != (*j)->getReadings()->end(); k++)
+      for(unsigned int j = 0; j < d->sizeReadings(i); j++)
 	{
-	  std::cout << "  " << (*k)->getTo()->ID() << std::endl;
+	  std::cout << "  " << d->getReading(i,j)->getTo()->ID() << std::endl;
 	}
-    }  
+    }
 
   return 0;
 }
+
+// int main ()
+// {
+
+//   //Criacao da data
+  
+//   IOPolly::Data *d = new IOPolly::Data();
+
+//   BaseCoordinates::Leaf::ENZ *p1 = d->newPoint ("Ponto 1", 45.5, 78.4, 120.0, 1);
+//   BaseCoordinates::Leaf::ENZ *p2 = d->newPoint ("Ponto 2", 21.5, 98.2, 124.1, 0);
+//   BaseCoordinates::Leaf::ENZ *p3 = d->newPoint ("Ponto 3", 21.5, 98.2, 124.1, 0);
+
+  
+//   IOPolly::Station *s1 = d->newStation("S1", p1, 1.45, 93.0);
+//   IOPolly::Station *s2 = d->newStation("S2", p2, 1.45, 93.0);
+
+//   d->newReading ("S1->R1", s1, p2, 23, 54, 56, 1.54);  
+//   d->newReading ("S1->R2", s1, p3, 23, 54, 56, 1.54);
+//   d->newReading ("S2->R1", s2, p3, 23, 54, 56, 1.54);  
+
+//   d->setId(0, "ALO");
+
+//   std::cout << d->getId(0) << std::endl;
+//   std::cout << d->getId(1,0) << std::endl;
+//   std::cout << d->getId(1) << std::endl;
+
+//   std::cout << " * * * * * * * * " << std::endl;
+
+//   std::list<IOPolly::Station *>::iterator j;
+
+//   std::list<IOPolly::Reading *>::iterator k;
+
+//   for(j = d->getStations()->begin(); j != d->getStations()->end(); j++)
+//     {
+//       std::cout << (*j)->getFrom()->ID() << std::endl;            
+
+//       for(k = (*j)->getReadings()->begin(); k != (*j)->getReadings()->end(); k++)
+// 	{
+// 	  std::cout << "  " << (*k)->getTo()->ID() << std::endl;
+// 	}
+//     }  
+
+//   return 0;
+// }
+
+
 
 // int main ()
 // {

@@ -74,6 +74,15 @@ namespace IOPolly
 
     // GET & SET for STATION and READINGS attributes //
 
+    // retorna os elementos das listas em funcao da posicao
+    Station* getStation (unsigned int pos);
+    Reading* getReading (unsigned int sPos, unsigned int rPos);
+
+    // retorna a dimensao das listas
+    unsigned int sizeStations ();
+    unsigned int sizeReadings (unsigned pos);
+
+    // retorna o id das estacoes e dos readings
     std::string getId (unsigned int pos);
 
     void setId (unsigned int pos, std::string newId);

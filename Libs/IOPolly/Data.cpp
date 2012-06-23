@@ -34,6 +34,51 @@ IOPolly::Station* IOPolly::Data::searchENZ (BaseCoordinates::Leaf::ENZ *p)
 
 // * GET & SET for STATION and READINGS attributes //
 
+IOPolly::Station* IOPolly::Data::getStation (unsigned int pos)
+{
+
+  assert(pos < stations->size());
+
+  std::list<IOPolly::Station *>::iterator it;
+
+  it = stations->begin();
+
+  std::advance(it, pos);
+
+  return *it;
+}
+
+IOPolly::Reading* IOPolly::Data::getReading (unsigned int sPos, unsigned int rPos)
+{
+  Station* s = getStation (sPos);
+  
+  std::list<IOPolly::Reading*>* r = s->getReadings();
+
+  assert(rPos < r->size());
+
+  std::list<IOPolly::Reading *>::iterator it;
+
+  it = r->begin();
+
+  std::advance(it, rPos);
+
+  return *it;
+}
+
+unsigned int IOPolly::Data::sizeStations ()
+{
+  return stations->size();
+}
+
+unsigned int IOPolly::Data::sizeReadings (unsigned pos)
+{
+    Station* s = getStation (pos);
+  
+    std::list<IOPolly::Reading*>* r = s->getReadings();
+
+    return r->size();
+}
+
 // Id
 
 std::string IOPolly::Data::getId (unsigned int pos)
