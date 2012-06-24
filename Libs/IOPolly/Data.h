@@ -1,4 +1,5 @@
 
+
 /*
  * IOPolly
  * Classe especializada para entrada e saida
@@ -19,6 +20,7 @@
 
 // C++ libs
 #include <string>
+#include <list>
 
 // C libs
 #include <cassert>
@@ -61,6 +63,7 @@ namespace IOPolly
 			    double height);
 
     //retorna a station com um determinado ENZ
+    // VC - deveria retornar uma lista de Station *
     Station* searchENZ (BaseCoordinates::Leaf::ENZ *p);
 
     // GET & SET for DATA attributes //
@@ -108,6 +111,25 @@ namespace IOPolly
     // az0 - Station
     const double getAz0 (unsigned int pos);
     void setAz0 (unsigned int pos, const double& newval);
+
+    // readings - Station
+    std::list <Reading *> * getReadings(unsigned int pos);
+    void setReadings(unsigned int pos, std::list <Reading *> * newval);
+
+    // h_dir - Reading
+    double getH_dir(unsigned int sPos, unsigned int rPos);
+    void setH_dir(unsigned int sPos, unsigned int rPos,
+		  const double& newval);
+
+    // v_dir - Reading
+    double getV_dir(unsigned int sPos, unsigned int rPos);
+    void setV_dir(unsigned int sPos, unsigned int rPos,
+		  const double& newval);
+
+    // dist - Reading
+    double getDist(unsigned int sPos, unsigned int rPos);
+    void setDist(unsigned int sPos, unsigned int rPos,
+		 const double& newval);
 
   private:
 
@@ -208,8 +230,6 @@ namespace IOPolly
     freeListStations (); // liberta a memoria
     stations = newval; 
   }
-
-  // * GET & SET for STATION attributes //
 
 
 }

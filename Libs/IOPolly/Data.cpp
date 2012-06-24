@@ -171,3 +171,60 @@ void IOPolly::Data::setAz0 (unsigned int pos, const double& newval)
 {
   getStation(pos)->setAz0(newval);
 }
+
+// readings - Station
+
+std::list <IOPolly::Reading *> * IOPolly::Data::getReadings(unsigned int pos)
+{
+  std::list <Reading *> * readings = getStation(pos)->getReadings();
+
+  return readings;
+}
+
+void IOPolly::Data::setReadings(unsigned int pos,
+				std::list <IOPolly::Reading *> * newval)
+{
+  getStation(pos)->setReadings(newval);
+}
+
+// h_dir - Reading
+double IOPolly::Data::getH_dir(unsigned int sPos, unsigned int rPos)
+{
+  double h_dir = getReading(sPos, rPos)->getH_dir();
+
+  return h_dir;
+}
+
+void IOPolly::Data::setH_dir(unsigned int sPos, unsigned int rPos,
+			     const double& newval)
+{
+  getReading (sPos, rPos)->setH_dir(newval);
+}
+
+// v_dir - Reading
+double IOPolly::Data::getV_dir(unsigned int sPos, unsigned int rPos)
+{
+  double v_dir = getReading(sPos, rPos)->getV_dir();
+
+  return v_dir;
+}
+
+void IOPolly::Data::setV_dir(unsigned int sPos, unsigned int rPos,
+			     const double& newval)
+{
+  getReading (sPos, rPos)->setV_dir(newval);
+}
+
+// dist - Reading
+double IOPolly::Data::getDist(unsigned int sPos, unsigned int rPos)
+{
+  double dist = getReading(sPos, rPos)->getDist();
+
+  return dist;
+}
+
+void IOPolly::Data::setDist(unsigned int sPos, unsigned int rPos,
+			    const double& newval)
+{
+  getReading (sPos, rPos)->setDist(newval);
+}
