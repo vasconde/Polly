@@ -21,6 +21,7 @@
 // C++ libs
 #include <string>
 #include <list>
+#include <vector>
 
 // C libs
 #include <cassert>
@@ -37,17 +38,17 @@ namespace IOPolly
     //metodos
 
     //aloca e liberta memoria para a lista de stations
-    inline void allocListPoints ();
-    inline void freeListPoints ();
+    inline void allocListTrigPoints ();
+    inline void freeListTrigPoints ();
 
     //aloca e liberta memoria para a lista de stations
     inline void allocListStations ();
     inline void freeListStations ();
 
-    //adiciona um novo ponto ah lista points
+    //adiciona um novo ponto ah lista TrigPoints
     //info define se eh um ponto fixo:
     //info -> 0 se Traverse Station; 1 se Control Station
-    inline BaseCoordinates::Leaf::ENZ * newPoint 
+    inline BaseCoordinates::Leaf::ENZ * newTrigPoint 
       (std::string name, double e, double n, double z, int info);
 
     //adiciona uma station ah lista stations
@@ -68,9 +69,9 @@ namespace IOPolly
 
     // GET & SET for DATA attributes //
 
-    //points
-    inline BaseCoordinates::Body::GeoCoord * getPoints() const;
-    inline void setPoints(BaseCoordinates::Body::GeoCoord * newval); 
+    //TrigPoints
+    inline BaseCoordinates::Body::GeoCoord * getTrigPoints() const;
+    inline void setTrigPoints(BaseCoordinates::Body::GeoCoord * newval); 
 
     //stations
     inline std::list <Station *> * getStations() const;
@@ -131,26 +132,31 @@ namespace IOPolly
     void setDist(unsigned int sPos, unsigned int rPos,
 		 const double& newval);
 
+    // posicao dado o id
+    unsigned int getPos(std::string id);
+
+    std::vector<unsigned int> getPos(std::string sId, std::string rId);
+
   private:
 
     //lista de pontoa de coordenads conhecidas - Control Stations
     //getInfoInt[0] -> 0 se Traverse Station; 1 se Control Station
-    BaseCoordinates::Body::GeoCoord *points;
+    BaseCoordinates::Body::GeoCoord *trigPoints;
 
     std::list<Station *> *stations;
 
   };
   
-  // alocacao de memoria para a lista de points
-  inline void Data::allocListPoints ()
+  // alocacao de memoria para a lista de TrigPoints
+  inline void Data::allocListTrigPoints ()
   {
-    points = new BaseCoordinates::Body::GeoCoord();
+    trigPoints = new BaseCoordinates::Body::GeoCoord();
   }
   
-  // libertacao de memoria para a lista de points
-  inline void Data::freeListPoints ()
+  // libertacao de memoria para a lista de TrigPoints
+  inline void Data::freeListTrigPoints ()
   {
-    delete points;
+    delete trigPoints;
   }
 
   // alocacao de memoria para a lista de stations
@@ -165,17 +171,17 @@ namespace IOPolly
     delete stations;
   }
 
-  //adiciona um novo ponto ah lista points
+  //adiciona um novo ponto ah lista TrigPoints
   //info define se eh um ponto fixo:
   //info -> 0 se Traverse Station; 1 se Control Station
-  inline BaseCoordinates::Leaf::ENZ * Data::newPoint 
+  inline BaseCoordinates::Leaf::ENZ * Data::newTrigPoint 
     (std::string name, double e, double n, double z, int info)
   {
     BaseCoordinates::Leaf::ENZ *p = new BaseCoordinates::Leaf::ENZ(e, n, z, name);
     
     p->getInfoInt()->push_back(info); //caso de ser uma control station
     
-    points->addEnzPoint(p);
+    trigPoints->addEnzPoint(p);
 
     return p;
   }
@@ -211,14 +217,14 @@ namespace IOPolly
   
   // * GET & SET for DATA attributes //
 
-  //Points
-  inline BaseCoordinates::Body::GeoCoord * Data::getPoints() const
-  { return points; }
+  //Trigpoints
+  inline BaseCoordinates::Body::GeoCoord * Data::getTrigPoints() const
+  { return trigPoints; }
 
-  inline void Data::setPoints(BaseCoordinates::Body::GeoCoord * newval)
+  inline void Data::setTrigPoints(BaseCoordinates::Body::GeoCoord * newval)
   { 
-    freeListPoints (); // liberta a memoria
-    points = newval; 
+    freeListTrigPoints (); // liberta a memoria
+    trigPoints = newval; 
   }
 
   //Stations

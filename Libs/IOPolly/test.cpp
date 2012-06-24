@@ -14,9 +14,9 @@ int main ()
   
   IOPolly::Data *d = new IOPolly::Data();
 
-  BaseCoordinates::Leaf::ENZ *p1 = d->newPoint ("Ponto 1", 45.5, 78.4, 120.0, 1);
-  BaseCoordinates::Leaf::ENZ *p2 = d->newPoint ("Ponto 2", 21.5, 98.2, 124.1, 0);
-  BaseCoordinates::Leaf::ENZ *p3 = d->newPoint ("Ponto 3", 21.5, 98.2, 124.1, 0);
+  BaseCoordinates::Leaf::ENZ *p1 = d->newTrigPoint ("Ponto 1", 45.5, 78.4, 120.0, 1);
+  BaseCoordinates::Leaf::ENZ *p2 = d->newTrigPoint ("Ponto 2", 21.5, 98.2, 124.1, 0);
+  BaseCoordinates::Leaf::ENZ *p3 = d->newTrigPoint ("Ponto 3", 21.5, 98.2, 124.1, 0);
 
   
   IOPolly::Station *s1 = d->newStation("S1", p1, 1.45, 93.0);
@@ -40,6 +40,12 @@ int main ()
 	  std::cout << "  " << d->getReading(i,j)->getTo()->ID() << std::endl;
 	}
     }
+
+  std::cout << "* * * * * * * *" << std::endl;
+
+  std::vector<unsigned int> v = d->getPos("S1","Sdd->R1"); //BUG - ver o q se passa
+
+  std::cout << v[0] << " " << v[1] << std::endl;
 
   return 0;
 }

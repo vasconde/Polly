@@ -4,14 +4,14 @@
 // Construtor
 IOPolly::Data::Data()
 {
-  allocListPoints ();
+  allocListTrigPoints ();
   allocListStations ();
 }
 
 // Destrutor
 IOPolly::Data::~Data()
 {
-  freeListPoints ();
+  freeListTrigPoints ();
   freeListStations ();
 }
 
@@ -227,4 +227,41 @@ void IOPolly::Data::setDist(unsigned int sPos, unsigned int rPos,
 			    const double& newval)
 {
   getReading (sPos, rPos)->setDist(newval);
+}
+
+// posicao dado o id
+unsigned int IOPolly::Data::getPos(std::string id)
+{
+  for(unsigned int i=0; i < sizeStations(); i++)
+    {
+      if(getStation(i)->getId() == id)
+	return i;
+    }
+  return -1;
+}
+
+std::vector<unsigned int> IOPolly::Data::getPos(std::string sId, std::string rId)
+{
+
+  std::vector<unsigned int> pos(2);
+
+  pos[0] = -1;
+  pos[1] = -1;
+
+  for(unsigned int i = 0; i < sizeStations(); i++)
+    {
+      if(getStation(i)->getId() == sId)
+	{
+	  for(unsigned int j = 0; j < sizeReadings(i); j++)
+	    {
+	      if(getReading(i,j)->getId() == rId)
+		{
+		    pos[0] = i;
+		    pos[1] = j;
+		}
+	    }
+	}
+    }
+
+  return pos;
 }
