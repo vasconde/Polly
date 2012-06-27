@@ -42,4 +42,11 @@ main
 /Docs/Latex/*.log
 /Libs/SIUnits/test
 /Libs/IOPolly/test
+*.a
+example
+garch
+nl_ex
+sl_ex
+test_exc
+tmt
 
