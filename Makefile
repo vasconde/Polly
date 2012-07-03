@@ -11,7 +11,7 @@ NEWMAT = ./Libs/newmat
 
 # # # # #
 
-all: newmat $(BCOODIR)/Leafs/ENZ.o $(BCOODIR)/Body/GeoCoord.o $(DPROBLEMDIR)/DProblem.o $(IOPOLLYDIR)/IOPolly.o $(SIUNITSDIR)/SIUnits.o
+all: newmat $(BCOODIR)/Leafs/ENZ.o $(BCOODIR)/Body/GeoCoord.o $(DPROBLEMDIR)/DProblem.o $(IOPOLLYDIR)/Reading.o $(IOPOLLYDIR)/Station.o $(IOPOLLYDIR)/Data.o $(SIUNITSDIR)/SIUnits.o
 
 # newmat - biblioteca externa para calculo de matrizes
 newmat: ./Libs/newmat10/nm_gnu.mak

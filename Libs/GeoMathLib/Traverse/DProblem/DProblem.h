@@ -4,7 +4,7 @@
 // C++ Standard Library //
 #include <string>
 #include <list>
-#include "../../../IOPolly/IOPolly.h"
+#include "../../../IOPolly/Data.h"
 #include "../../../BaseCoordinates/Body/GeoCoord.h"
 #include "../../../BaseCoordinates/Leafs/ENZ.h"
 
@@ -17,14 +17,14 @@ namespace GeoMathLib
     public:
 
       //Construtor
-      DProblem(IOPolly *ioPolly);
+      DProblem(IOPolly::Data *ioPolly);
    
       //Executa o processo de cálculo das aproximações inicias dos parâmetros
       void Run();
      
     private:
 
-      IOPolly *ioPolly;
+      IOPolly::Data *ioPolly;
       
       //Calcula o Azimute fixo da poligonal
       void calcFixedAzimuth();
