@@ -3,12 +3,14 @@ CFLAGS = -g -Wall -std=c++98
 
 OBJ = test.o AjustLS.o
 
+NEWMAT = -L../../../newmat10 -lnewmat
+
 # # # # #
 
 all: test
 
 test: test.o AjustLS.o
-	$(CC) $(CFLAGS) -o test $(OBJ)
+	$(CC) $(CFLAGS) -o test $(OBJ) $(NEWMAT) -lm
 
 test.o: AjustLS.h test.cpp
 	$(CC) $(CFLAGS) -c test.cpp
