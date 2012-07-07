@@ -54,6 +54,10 @@ namespace IOPolly
     inline const double& getHeight() const;
     inline void setHeight(const double& newval);
 
+    // marker neighborhood
+    inline const bool& isMarker() const;
+    inline void setMarker(const bool& newval);
+
   private:
         
     //atributos//
@@ -67,6 +71,8 @@ namespace IOPolly
     double dist;        //distancia
 
     double height; // tripod height
+
+    bool marker;  // marker neighborhood
 
   };
 
@@ -87,6 +93,9 @@ namespace IOPolly
 
   inline const double& Reading::getHeight() const { return height; }		
   inline void Reading::setHeight(const double& newval) { height = newval; }
+
+  inline const bool& Reading::isMarker() const { return marker; }		
+  inline void Reading::setMarker(const bool& newval) { marker = newval; }
 }
 
 #endif // _READING_H_

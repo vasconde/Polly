@@ -11,11 +11,12 @@ IOPolly::Reading::Reading(std::string id, BaseCoordinates::Leaf::ENZ *p_to,
   this->v_dir = v_dir; 
   this->dist = dist; 
   this->height = height;
+  this->marker = false;
 }
 
 IOPolly::Reading::Reading()
 {
-
+  this->marker = false;
 }
 
 // Destrutor
